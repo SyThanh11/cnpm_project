@@ -27,7 +27,7 @@ export const Header = () => {
             <button onClick={() => { navigate(PATH.login) }} className="bg-white text-[#1B1BEF] border-2 border-[#1B1BEF] hover:bg-[#1B1BEF] hover:text-white transition-all font-medium py-4 px-20 rounded">
               Login
             </button>
-            <button className="bg-[#1B1BEF] text-white border-2 border-[#1B1BEF] hover:bg-white hover:text-[#1B1BEF] transition-all font-medium py-4 px-20 rounded">
+            <button onClick={() => { navigate(PATH.signUp) }} className="bg-[#1B1BEF] text-white border-2 border-[#1B1BEF] hover:bg-white hover:text-[#1B1BEF] transition-all font-medium py-4 px-20 rounded">
               Sign up
             </button>
           </div>

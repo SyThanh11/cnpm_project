@@ -1,4 +1,5 @@
 export const PATH = {
     login: '/login',
-    signUp: '/sign-up'
+    signUp: '/sign-up',
+    user: '/user'
 }

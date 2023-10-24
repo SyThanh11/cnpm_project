@@ -1,6 +1,9 @@
 import { UserOutlined, KeyOutlined, PhoneOutlined, MailOutlined, TeamOutlined } from '@ant-design/icons'
+import { PATH } from 'constant/config';
+import { useNavigate } from 'react-router-dom'
 
 export const SignUpTemplate = () => {
+  const navigate = useNavigate();
   return (
     <div className="LoginTemplate grid grid-cols-2">
         <div className="content-left col-span-1 flex items-center justify-center">
@@ -46,11 +49,14 @@ export const SignUpTemplate = () => {
                         <input type="text" className="border border-[#009EE2] text-gray-900 text-sm rounded-lg block w-full p-2.5" placeholder="MSSV" />
                     </div>
                 </div>
-                <div className='flex items-center justify-center my-20'>
+                <div className='flex items-center justify-center mt-20'>
                     <button className="bg-[#009EE2] text-white border-2 border-[#009EE2] hover:border-[#2e6780] hover:bg-[#2e6780] hover:text-white transition-all font-bold py-6 px-34 rounded">
                         Sign Up
                     </button>
                 </div>
+                <div className='login-signup flex items-center justify-center mt-10 mb-20'>
+                    <p className='text-14'>Do have an account? <span onClick={() => { navigate(PATH.login) }} className='font-bold hover:cursor-pointer'>Login Now</span></p>
+                </div>  
             </div>
         </div>
     </div>

@@ -1,7 +1,7 @@
 const HomeTemplate = () => {
   return (
     <div className="content grid grid-cols-2">
-      <div className="content-left col-span-1 py-20 px-[80px]">
+      <div className="content-left col-span-1 py-40 px-[80px]">
         <h2 className="text-[40px] font-bold pr-[100px]">Introduce Your Smart Printing & Effectively</h2>
         <p className="mt-30 text-[#505F98] pr-20">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.</p>
         <div className="left-action my-[80px] flex items-center gap-30">

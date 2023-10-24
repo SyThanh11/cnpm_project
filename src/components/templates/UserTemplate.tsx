@@ -1,4 +1,8 @@
+import { PATH } from 'constant/config';
+import { useNavigate } from 'react-router-dom'
+
 export const UserTemplate = () => {
+  const navigate = useNavigate();
   return (
     <div className="UserTemplate">
         <div className="top h-[500px]">
@@ -8,7 +12,7 @@ export const UserTemplate = () => {
         </div>
         <div className="bottom absolute top-[51%] left-[33%]">
             <div className="flex items-center justify-center gap-50">
-                <div className="text-center bg-white border-2 border-[#1B1BEF] px-14 py-20 rounded-[10px] hover:-translate-y-10 transition-all hover:cursor-pointer">
+                <div onClick={() => { navigate(PATH.printOne) }} className="text-center bg-white border-2 border-[#1B1BEF] px-14 py-20 rounded-[10px] hover:-translate-y-10 transition-all hover:cursor-pointer">
                     <h2 className="font-bold">PRINT</h2>
                     <p>In tài liệu, sách, <br/> photo, ...</p>
                 </div>

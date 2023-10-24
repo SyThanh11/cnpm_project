@@ -1,6 +1,6 @@
-import { MainLayout } from "components";
+import { MainLayout, PrintLayout } from "components";
 import { PATH } from "constant/config";
-import { Home, Login, SignUp, User } from "pages";
+import { Home, Login, PrintOne, SignUp, User } from "pages";
 import { RouteObject } from "react-router-dom";
 
 export const router: RouteObject[] = [
@@ -24,5 +24,14 @@ export const router: RouteObject[] = [
                 element: <User />
             }
         ]
-    }
+    },
+    {
+        element: <PrintLayout />,
+        children: [
+            {
+                path: PATH.printOne,
+                element: <PrintOne />
+            }
+        ]
+    },
 ];

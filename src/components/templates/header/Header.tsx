@@ -8,7 +8,7 @@ export const Header = () => {
     <header className='flex items-center'>
         <div className='grid grid-cols-4 container'>
           <div className="header-logo col-span-1 flex items-center hover:cursor-pointer" onClick={() => { navigate('/') }}>
-              <img src="img/logoBK.png" alt="logo" style={{
+              <img src="/img/logoBK.png" alt="logo" style={{
                   width: '80px',
                   height: '76.4px',
                   objectFit: 'cover'

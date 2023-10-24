@@ -1,0 +1,71 @@
+import { CloudUploadOutlined } from '@ant-design/icons'
+
+export const PrintOneTemplate = () => {
+  return (
+    <div className="PrintOneTemplate grid grid-cols-2">
+        <div className="left col-span-1 ml-[50px] py-10">
+            <h1 className="text-[#009EE2] font-bold text-36 pb-20 pt-10">Đăng ký in giấy</h1>
+            <div>
+                <label className="block mb-2 text-sm font-medium text-[#009EE2]">Kích thước giấy</label>
+                <div className='input-content flex items-center'>
+                    <select className="border border-[#009EE2] text-sm rounded-lg block w-full p-2.5">
+                        <option selected>Chọn kích thước giấy</option> 
+                        <option value="A5">Giấy A5</option>
+                        <option value="A4">Giấy A4</option>
+                        <option value="A3">Giấy A3</option>
+                    </select>
+                </div>
+            </div>
+            <div className='mt-20'>
+                <label className="block mb-2 text-sm font-medium text-[#009EE2]">Thể loại</label>
+                <div className='input-content flex items-center'>
+                    <select className="border border-[#009EE2] text-sm rounded-lg block w-full p-2.5">
+                        <option selected>Chọn cách in</option> 
+                        <option value="0">In trắng đen</option>
+                        <option value="1">In màu</option>
+                    </select>
+                </div>
+            </div>
+            <div className='mt-20'>
+                <label className="block mb-2 text-sm font-medium text-[#009EE2]">Thanh toán</label>
+                <div className='input-content flex items-center'>
+                    <select className="border border-[#009EE2] text-sm rounded-lg block w-full p-2.5">
+                        <option selected>Chọn thanh toán</option> 
+                        <option value="0">Thanh toán trực tiếp</option>
+                        <option value="1">Thanh toán qua ngân hàng</option>
+                    </select>
+                </div>
+            </div>
+            <div className='mt-20'>
+                <label className="block mb-2 text-sm font-medium text-[#009EE2]">Số lượng giấy in</label>
+                <div className='input-content flex items-center'>
+                    <input type="text" className="border border-[#009EE2] text-sm rounded-lg block w-full p-2.5" placeholder="Số lượng giấy in" />
+                </div>
+            </div>
+            <div className="flex items-center mt-16 gap-4">
+                <input type="radio" value="" name="default-radio" className="w-14 h-14 text-blue-600 bg-white border border-[#009EE2]"/>
+                <label className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Chấp nhận điều khoản và chịu trách nhiệm với chúng tôi </label>
+            </div>
+            <div className='flex items-center justify-end py-20'>
+                <button className="bg-[#009EE2] text-white border-2 border-[#009EE2] hover:border-[#2e6780] hover:bg-[#2e6780] hover:text-white transition-all font-bold py-6 px-34 rounded">
+                    Tiếp theo
+                </button>
+            </div>
+        </div>
+        <div className="right col-span-1 flex justify-center items-center">
+            <div className='flex items-center justify-center flex-col gap-10 border-2 border-dotted border-black px-40 py-30 rounded-[10px]'>
+                <CloudUploadOutlined className='text-30'/>
+                <h1 className='font-bold text-20'>Drap and Drop here</h1>
+                <p>or</p>
+                <div className='flex items-center justify-center'>
+                    <button className="bg-[#009EE2] text-white border-2 border-[#009EE2] hover:border-[#2e6780] hover:bg-[#2e6780] hover:text-white transition-all font-bold py-6 px-[60px] rounded">
+                        Select File
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+  )
+}
+
+export default PrintOneTemplate

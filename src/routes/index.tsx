@@ -1,5 +1,6 @@
 import { MainLayout } from "components";
-import Home from "pages/Home";
+import { PATH } from "constant/config";
+import { Home, Login } from "pages";
 import { RouteObject } from "react-router-dom";
 
 export const router: RouteObject[] = [
@@ -9,6 +10,10 @@ export const router: RouteObject[] = [
             {
                 path: '/',
                 element: <Home></Home>
+            },
+            {
+                path: PATH.login,
+                element: <Login></Login>
             }
         ]
     }

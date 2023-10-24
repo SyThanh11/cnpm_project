@@ -1,6 +1,6 @@
 import HomeTemplate from "components/templates/HomeTemplate"
 
-const Home = () => {
+export const Home = () => {
   return (
     <HomeTemplate></HomeTemplate>
   )

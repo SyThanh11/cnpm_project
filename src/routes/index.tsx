@@ -1,6 +1,6 @@
 import { MainLayout, PrintLayout } from "components";
 import { PATH } from "constant/config";
-import { Home, Login, PrintOne, SignUp, User } from "pages";
+import { Home, Login, PrintOne, SignUp, User, About, PrintTwo } from "pages";
 import { RouteObject } from "react-router-dom";
 
 export const router: RouteObject[] = [
@@ -22,6 +22,10 @@ export const router: RouteObject[] = [
             {
                 path: PATH.user,
                 element: <User />
+            },
+            {
+                path: PATH.about,
+                element: <About />
             }
         ]
     },
@@ -31,6 +35,10 @@ export const router: RouteObject[] = [
             {
                 path: PATH.printOne,
                 element: <PrintOne />
+            },
+            {
+                path: PATH.printTwo,
+                element: <PrintTwo />
             }
         ]
     },

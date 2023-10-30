@@ -1,6 +1,9 @@
 import { CloudUploadOutlined } from '@ant-design/icons'
+import { useNavigate } from 'react-router-dom'
+import { PATH } from 'constant/config';
 
 export const PrintOneTemplate = () => {
+    const navigate = useNavigate();
   return (
     <div className="PrintOneTemplate grid grid-cols-2">
         <div className="left col-span-1 ml-[50px] py-10">
@@ -44,10 +47,10 @@ export const PrintOneTemplate = () => {
             </div>
             <div className="flex items-center mt-16 gap-4">
                 <input type="radio" value="" name="default-radio" className="w-14 h-14 text-blue-600 bg-white border border-[#009EE2]"/>
-                <label className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Chấp nhận điều khoản và chịu trách nhiệm với chúng tôi </label>
+                <label className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Tôi đồng ý với các điều khoản dịch vụ </label>
             </div>
             <div className='flex items-center justify-end py-20'>
-                <button className="bg-[#009EE2] text-white border-2 border-[#009EE2] hover:border-[#2e6780] hover:bg-[#2e6780] hover:text-white transition-all font-bold py-6 px-34 rounded">
+                <button onClick={() => {navigate(PATH.printTwo)} } className="bg-[#009EE2] text-white border-2 border-[#009EE2] hover:border-[#2e6780] hover:bg-[#2e6780] hover:text-white transition-all font-bold py-6 px-34 rounded">
                     Tiếp theo
                 </button>
             </div>

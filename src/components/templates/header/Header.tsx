@@ -1,9 +1,11 @@
 import { PATH } from 'constant/config';
 import './style.scss'
 import { useNavigate } from 'react-router-dom'
+import { useState } from 'react';
 
 export const Header = () => {
   const navigate = useNavigate();
+  const [page, setPage] = useState("Home");
   return (
     <header className='flex items-center'>
         <div className='grid grid-cols-4 container'>
@@ -17,10 +19,10 @@ export const Header = () => {
           </div>
           <div className="header-menu col-span-2">
               <ul className='flex items-center h-full gap-[40px] justify-center font-normal'>
-                <li><a href="#" className='active'>Home</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Contact</a></li>
-                <li><a href="#">Feedback</a></li>
+                <li><a className={page === "Home" ? "active" : ""} onClick={() => {setPage("Home"); navigate(PATH.home)}}>Home</a></li>
+                <li><a className={page === "About" ? "active" : ""} onClick={() => {setPage("About"); navigate(PATH.about)}}>About</a></li>
+                <li><a className={page === "Contact" ? "active" : ""} onClick={() => {setPage("Contact"); navigate(PATH.home)}}>Contact</a></li>
+                <li><a className={page === "Feedback" ? "active" : ""} onClick={() => {setPage("Feedback"); navigate(PATH.home)}}>Feedback</a></li>
               </ul>
           </div>
           <div className="header-action col-span-1 flex items-center gap-20 justify-end">

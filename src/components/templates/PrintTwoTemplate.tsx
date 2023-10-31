@@ -44,12 +44,12 @@ export const PrintTwoTemplate = () => {
             </div>
             <div className='flex items-center justify-end py-20'>
                 <button className="bg-[#009EE2] text-white border-2 border-[#009EE2] hover:border-[#2e6780] hover:bg-[#2e6780] hover:text-white transition-all font-bold py-6 px-34 rounded">
-                    Tiếp theo
+                    Hoàn thành
                 </button>
             </div>
         </div>
-        <div className="right col-span-1 flex justify-center items-center">
-            <img src="/img/DHBK_HCM-Catalogue-2015.jpg" alt="Location" className="h-[400px] w-[500px]"></img>
+        <div className="right col-span-1 flex justify-center items-center ">
+            <img src="/img/DHBK_HCM-Catalogue-2015.jpg" alt="Location" className="h-[500px] w-[500px] py-50"></img>
         </div>
     </div>
   )

@@ -16,9 +16,6 @@ export const Sidebar = () => {
         onClick={() => {navigate(PATH.printTwo)}}>
             <h3 className={isActiveSide2 ? "font-bold text-white" : "font-bold"}>Bước 2</h3>
         </NavLink>
-        <div className="px-26 py-10 rounded-[10px]">
-            <h3 className="font-bold">Bước 3</h3>
-        </div>
     </div>
   )
 }

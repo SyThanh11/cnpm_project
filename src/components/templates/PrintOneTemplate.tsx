@@ -1,4 +1,4 @@
-import { CloudUploadOutlined } from '@ant-design/icons'
+import DragDropFile from './UploadFile';
 import { useNavigate } from 'react-router-dom'
 import { PATH } from 'constant/config';
 
@@ -56,16 +56,7 @@ export const PrintOneTemplate = () => {
             </div>
         </div>
         <div className="right col-span-1 flex justify-center items-center">
-            <div className='flex items-center justify-center flex-col gap-10 border-2 border-dotted border-black px-40 py-30 rounded-[10px]'>
-                <CloudUploadOutlined className='text-30'/>
-                <h1 className='font-bold text-20'>Drap and Drop here</h1>
-                <p>or</p>
-                <div className='flex items-center justify-center'>
-                    <button className="bg-[#009EE2] text-white border-2 border-[#009EE2] hover:border-[#2e6780] hover:bg-[#2e6780] hover:text-white transition-all font-bold py-6 px-[60px] rounded">
-                        Select File
-                    </button>
-                </div>
-            </div>
+            <DragDropFile/>
         </div>
     </div>
   )

@@ -16,7 +16,7 @@ export const UserTemplate = () => {
                     <h2 className="font-bold">PRINT</h2>
                     <p>In tài liệu, sách, <br/> photo, ...</p>
                 </div>
-                <div className="text-center bg-white border-2 border-[#1B1BEF] px-14 py-20 rounded-[10px] hover:-translate-y-10 transition-all hover:cursor-pointer">
+                <div onClick={() => { navigate(PATH.historyPrint) }} className="text-center bg-white border-2 border-[#1B1BEF] px-14 py-20 rounded-[10px] hover:-translate-y-10 transition-all hover:cursor-pointer">
                     <h2 className="font-bold">HISTORY</h2>
                     <p>Xem lịch sử sử<br/>dụng máy in</p>
                 </div>

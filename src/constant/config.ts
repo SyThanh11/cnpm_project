@@ -5,5 +5,7 @@ export const PATH = {
     user: '/user',
     printOne: '/user/print/page-1',
     about: '/about',
-    printTwo: '/user/print/page-2'
+    printTwo: '/user/print/page-2',
+    historyPrint: '/user/history/print',
+    historyBuy: '/user/history/buy'
 }

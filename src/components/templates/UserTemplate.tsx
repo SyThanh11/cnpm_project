@@ -4,15 +4,20 @@ import Modal from "./FeedbackModal";
 import React from "react";
 
 export const UserTemplate = () => {
-  const navigate = useNavigate();
-  const [open, setOpen] = React.useState(true);
-const handleClose = () => {
-    setOpen(false);
-};
+    const navigate = useNavigate();
+    const [open, setOpen] = React.useState(false);
+    const handleClose = () => {
+        setOpen(false);
+    };
 
-const handleOpen = () => {
-    setOpen(true);
-};
+    const handleOpen = () => {
+        setOpen(true);
+    };
+
+    const handleSubmit = (email) => {
+        console.log('Email submitted:', email);
+    };
+
   return (
     <div className="UserTemplate">
         <div className="top h-[500px]">
@@ -36,10 +41,9 @@ const handleOpen = () => {
                 </div>
             </div>
         </div>
-        <h1 className="text-center text-[40px] font-bold pt-26 text-[#009EE2]">Trải nghiệm ngay nào</h1>
-        <Modal isOpen={open} onClose={handleClose}>
+        <h1 className="text-center text-[40px] font-bold pt-0 text-[#009EE2]">Trải nghiệm ngay nào</h1>
+        <Modal isOpen={open} onClose={handleClose} onSubmit={handleSubmit}>
             <>
-                <h1>STUPID MODAL</h1>
             </>
         </Modal>
     </div>

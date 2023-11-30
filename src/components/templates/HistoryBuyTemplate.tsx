@@ -1,13 +1,13 @@
-import { useNavigate } from 'react-router-dom'
-import { PATH } from 'constant/config';
-import { useState } from 'react';
+// import { useNavigate } from 'react-router-dom'
+// import { PATH } from 'constant/config';
+import { useState, useEffect } from 'react';
 
 const HistoryBuyData = ({ header, data }) => {
     return (
-      <div style={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
+      <div className="flex flex-col w-full">
           {header.map((headerData, rowIndex) => (
               <div className="block mb-2 text-sm font-medium text-[#FFFFFF]" 
-                  key={rowIndex} style={{ display: 'flex', width: '100%', border: '1px solid #000', backgroundColor: '#00B9E2', textAlign: 'center' }}>
+                  key={rowIndex} style={{ display: 'flex', width: '100%', border: '1px solid #000', backgroundColor: '#00B9E2', textAlign: 'center', fontSize: '16px' }}>
             
               {headerData.map((cellData, cellIndex) => (
                   <div key={cellIndex} style={{ flex: 1, padding: '15px' }}>
@@ -32,7 +32,7 @@ const HistoryBuyData = ({ header, data }) => {
 };
 
 const PageNumbers = ({ numPages, onPageClick }) => {
-  const [clickedPage, setClickedPage] = useState(null);
+  const [clickedPage, setClickedPage] = useState(1);
   const [hoveredPage, setHoveredPage] = useState(null);
 
   const pageNumbers = Array.from({ length: numPages }, (_, index) => index + 1);
@@ -67,7 +67,7 @@ const PageNumbers = ({ numPages, onPageClick }) => {
   });
 
   return (
-    <div style={{ display: 'flex', justifyContent: 'right', marginTop: '20px' }}>
+    <div className="flex justify-end mt-20">
       {pageNumbers.map((pageNumber) => (
         <div
           key={pageNumber}
@@ -84,34 +84,39 @@ const PageNumbers = ({ numPages, onPageClick }) => {
 };
 
 
-const Content = ({ currentPage }) => (
-    <div>
-        <p>Content for Page {currentPage}</p>
-        {/* Replace this with your own logic to fetch and display content */}
-    </div>
-);
-
 export const HistoryBuyTemplate = () => {
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
     const tableHeader = [['Số thứ tự', 'Ngày và giờ', 'Loại giấy', 'Số lượng', 'Trạng thái']];
-    const tableData = [
-        ['1', '28/11/2023 09:11 am', 'A3', '10', 'Hoàn thành'],
-        ['2', '28/11/2023 09:11 am', 'A4', '10', 'Đang thực hiện'],
-        ['3', '28/11/2023 09:11 am', 'A0', '10', 'Hoàn thành'],
-    ];
+    const [tableData, setTableData] = useState([
+      ['1', '28/11/2023 09:11 am', 'A3', '10', 'Hoàn thành'],
+      ['2', '28/11/2023 09:11 am', 'A4', '10', 'Đang thực hiện'],
+      ['3', '28/11/2023 09:11 am', 'A0', '10', 'Hoàn thành'],
+  ]);
     const [currentPage, setCurrentPage] = useState(1);
     const numberOfPages = 5;
 
     const handlePageClick = (pageNumber) => {
-        setCurrentPage(pageNumber);
-    };
+      const newData = generateDataForPage(pageNumber);
+      setTableData(newData);
+      setCurrentPage(pageNumber);
+  };
+  const generateDataForPage = (pageNumber) => {
+    return [
+        [`${(pageNumber-1)*3 + 1}`, '28/11/2023 09:11 am', 'A3', `${pageNumber}`, 'Hoàn thành'],
+        [`${(pageNumber-1)*3 + 2}`, '28/11/2023 09:11 am', 'A4', `${pageNumber}`, 'Đang thực hiện'],
+        [`${(pageNumber-1)*3 + 3}`, '28/11/2023 09:11 am', 'A0', `${pageNumber}`, 'Hoàn thành'],
+    ];
+  };
+  useEffect(() => {
+    handlePageClick(1);
+  }, []);
+
   return (
     <div className="HistoryPrintTemplate grid grid-cols-1">
         <div className="col-span-1 ml-[50px] mr-[50px] py-10">
             <h1 className="text-[#009EE2] font-bold text-36 pb-20 pt-10">Lịch sử mua giấy</h1>
             <HistoryBuyData header={tableHeader} data={tableData} />
             <PageNumbers numPages={numberOfPages} onPageClick={handlePageClick} />
-            <Content currentPage={currentPage} />
         </div>
     </div>
   )

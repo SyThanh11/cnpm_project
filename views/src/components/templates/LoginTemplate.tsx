@@ -26,7 +26,7 @@ export const LoginTemplate = () => {
                 setTimeout(() => {
                     window.location.reload();
                 }, 500);
-                navigate("/");
+                navigate("/");   
             })
             .catch((error) => {
                 if (error.response) {

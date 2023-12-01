@@ -8,6 +8,10 @@ var session = require('express-session');
 var cookieParser = require('cookie-parser');
 var cors = require('cors');
 
+
+const signinRoute = require('./routes/signin');
+
+
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
   max: 100 // limit each IP to 100 requests per windowMs
@@ -36,5 +40,7 @@ app.use(session({
   resave: false,
   saveUninitialized: true,
 }));
+
+app.use("/api/signin", signinRoute);
 
 app.listen(8080);

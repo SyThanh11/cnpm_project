@@ -1,4 +1,4 @@
-var authentication_model = require("../model/authentication")
+var authentication_model = require("../models/authentication")
 
 module.exports = {
     signin: function (req, res) {

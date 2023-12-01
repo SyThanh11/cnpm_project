@@ -1,111 +1,109 @@
-import { Card, Typography } from "@material-tailwind/react";
- 
-const TABLE_HEAD = ["Name", "Job", "Employed", ""];
- 
-const TABLE_ROWS = [
+const Table_row = [
   {
-    name: "John Michael",
-    job: "Manager",
-    date: "23/04/18",
+    "Tên tài liệu": "Giải tích 1",
+    "Ngày và giờ": "12/1/2023 6:49pm",
+    "Loại giấy": "A4",
+    "Tên máy in": "H6",
+    "Trạng thái": "Hoàn thành"
   },
   {
-    name: "Alexa Liras",
-    job: "Developer",
-    date: "23/04/18",
+    "Tên tài liệu": "Giải tích 1",
+    "Ngày và giờ": "12/1/2023 6:49pm",
+    "Loại giấy": "A4",
+    "Tên máy in": "H6",
+    "Trạng thái": "Hoàn thành"
   },
   {
-    name: "Laurent Perrier",
-    job: "Executive",
-    date: "19/09/17",
+    "Tên tài liệu": "Giải tích 1",
+    "Ngày và giờ": "12/1/2023 6:49pm",
+    "Loại giấy": "A4",
+    "Tên máy in": "H6",
+    "Trạng thái": "Hoàn thành"
   },
   {
-    name: "Michael Levi",
-    job: "Developer",
-    date: "24/12/08",
+    "Tên tài liệu": "Giải tích 1",
+    "Ngày và giờ": "12/1/2023 6:49pm",
+    "Loại giấy": "A4",
+    "Tên máy in": "H6",
+    "Trạng thái": "Hoàn thành"
   },
   {
-    name: "Richard Gran",
-    job: "Manager",
-    date: "04/10/21",
+    "Tên tài liệu": "Giải tích 1",
+    "Ngày và giờ": "12/1/2023 6:49pm",
+    "Loại giấy": "A4",
+    "Tên máy in": "H6",
+    "Trạng thái": "Hoàn thành"
   },
-];
-
+  {
+    "Tên tài liệu": "Giải tích 1",
+    "Ngày và giờ": "12/1/2023 6:49pm",
+    "Loại giấy": "A4",
+    "Tên máy in": "H6",
+    "Trạng thái": "Hoàn thành"
+  },
+  {
+    "Tên tài liệu": "Giải tích 1",
+    "Ngày và giờ": "12/1/2023 6:49pm",
+    "Loại giấy": "A4",
+    "Tên máy in": "H6",
+    "Trạng thái": "Hoàn thành"
+  }
+]
 export const HistoryPrintTemplate = () => {
   return (
     <div className="PrintOneTemplate grid grid-cols-2">
-        <div className="left col-span-2 ml-[50px] py-10">
+        <div className="left col-span-2 ml-[50px] py-10 mr-[50px]">
             <h1 className="text-[#009EE2] font-bold text-36 pb-20 pt-10">Lịch sử in ấn</h1>
-            <Card className="h-full w-full overflow-scroll">
-            <table className="w-full min-w-max table-auto text-center">
-                <thead>
-                <tr>
-                    {TABLE_HEAD.map((head) => (
-                    <th
-                        key={head}
-                        className="border-b border-blue-gray-100 bg-blue-gray-50 p-4"
-                    >
-                        <Typography
-                        variant="small"
-                        color="blue-gray"
-                        className="font-normal leading-none opacity-70"
-                        >
-                        {head}
-                        </Typography>
-                    </th>
-                    ))}
-                </tr>
-                </thead>
-                <tbody>
-                {TABLE_ROWS.map(({ name, job, date }, index) => {
-                    const isLast = index === TABLE_ROWS.length - 1;
-                    const classes = isLast ? "p-4" : "p-4 border-b border-blue-gray-50";
-        
-                    return (
-                    <tr key={name}>
-                        <td className={classes}>
-                        <Typography
-                            variant="small"
-                            color="blue-gray"
-                            className="font-normal"
-                        >
-                            {name}
-                        </Typography>
+            <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+              <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                  <thead className="text-xs text-gray-700 uppercase bg-blue-400 dark:bg-gray-700 dark:text-gray-400">
+                      <tr>
+                          <th scope="col" className="px-6 py-3 w-1/6 text-white text-center">
+                              Số thứ tự
+                          </th>
+                          <th scope="col" className="px-6 py-3 w-1/6 text-white text-center">
+                              Tên tài liệu
+                          </th>
+                          <th scope="col" className="px-6 py-3 w-1/6 text-white text-center">
+                              Ngày và giờ
+                          </th>
+                          <th scope="col" className="px-6 py-3 w-1/6 text-white text-center">
+                              Loại giấy
+                          </th>
+                          <th scope="col" className="px-6 py-3 w-1/6 text-white text-center">
+                              Tên máy in
+                          </th>
+                          <th scope="col" className="px-6 py-3 w-1/6 text-white text-center">
+                              Trạng thái
+                          </th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                    {Table_row.map((items, index) => (
+                      <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                        <th scope="row" className="px-6 py-4 text-gray-900 text-center">
+                            {index + 1}
+                        </th>
+                        <td className="px-6 py-4 text-center">
+                            {items["Tên tài liệu"]}
                         </td>
-                        <td className={classes}>
-                        <Typography
-                            variant="small"
-                            color="blue-gray"
-                            className="font-normal"
-                        >
-                            {job}
-                        </Typography>
+                        <td className="px-6 py-4 text-center">
+                            {items["Ngày và giờ"]}
                         </td>
-                        <td className={classes}>
-                        <Typography
-                            variant="small"
-                            color="blue-gray"
-                            className="font-normal"
-                        >
-                            {date}
-                        </Typography>
+                        <td className="px-6 py-4 text-center">
+                            {items["Loại giấy"]}
                         </td>
-                        <td className={classes}>
-                        <Typography
-                            as="a"
-                            href="#"
-                            variant="small"
-                            color="blue-gray"
-                            className="font-medium"
-                        >
-                            Edit
-                        </Typography>
+                        <td className="px-6 py-4 text-center">
+                            {items["Tên máy in"]}
+                        </td>
+                        <td className="px-6 py-4 text-center">
+                            {items["Trạng thái"]}
                         </td>
                     </tr>
-                    );
-                })}
-                </tbody>
-            </table>
-            </Card>
+                    ))}
+                  </tbody>
+              </table>
+          </div>
         </div>
     </div>
   )

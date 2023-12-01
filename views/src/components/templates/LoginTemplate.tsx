@@ -26,7 +26,7 @@ export const LoginTemplate = () => {
                 setTimeout(() => {
                     window.location.reload();
                 }, 500);
-                navigate("/");   
+                navigate(PATH.user);   
             })
             .catch((error) => {
                 if (error.response) {
@@ -50,21 +50,21 @@ export const LoginTemplate = () => {
                         <label className="ml-30 block mb-2 text-sm font-medium text-[#009EE2]">Username</label>
                         <div className='input-content flex items-center'>
                             <UserOutlined className='mr-3 text-[20px]'/>
-                            <input type="text" className="border border-[#009EE2] text-gray-900 text-sm rounded-lg block w-full p-2.5" placeholder="Username" />
+                            <input type="text" className="border border-[#009EE2] text-gray-900 text-sm rounded-lg block w-full p-2.5" placeholder="Username" value={email} onChange={(e) => setEmail(e.target.value)}/>
                         </div>
                     </div>
                     <div className='mt-20'>
                         <label className="ml-30 block mb-2 text-sm font-medium text-[#009EE2]">Password</label>
                         <div className='input-content flex items-center'>
                             <KeyOutlined className='mr-3 text-[20px]'/>
-                            <input type="password" className="border border-[#009EE2] text-gray-900 text-sm rounded-lg block w-full p-2.5" placeholder="Password" />
+                            <input type="password" className="border border-[#009EE2] text-gray-900 text-sm rounded-lg block w-full p-2.5" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)}/>
                         </div>
                     </div>
                     <div className='flex items-center justify-end my-10'>
                         <p className='text-14 hover:cursor-pointer'>Forgot your password?</p>
                     </div>
                     <div className='flex items-center justify-center'>
-                        <button onClick={() => { navigate(PATH.user) }} className="bg-[#009EE2] text-white border-2 border-[#009EE2] hover:border-[#2e6780] hover:bg-[#2e6780] hover:text-white transition-all font-bold py-6 px-34 rounded">
+                        <button onClick={(e) => handleSubmit(e)} className="bg-[#009EE2] text-white border-2 border-[#009EE2] hover:border-[#2e6780] hover:bg-[#2e6780] hover:text-white transition-all font-bold py-6 px-34 rounded">
                             LOGIN
                         </button>
                     </div>

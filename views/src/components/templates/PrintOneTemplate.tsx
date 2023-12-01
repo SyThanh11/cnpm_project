@@ -1,4 +1,3 @@
-import DragDropFile from './UploadFile';
 import { useNavigate } from 'react-router-dom'
 import { PATH } from 'constant/config';
 
@@ -54,9 +53,6 @@ export const PrintOneTemplate = () => {
                     Tiếp theo
                 </button>
             </div>
-        </div>
-        <div className="right col-span-1 flex justify-center items-center">
-            <DragDropFile/>
         </div>
     </div>
   )

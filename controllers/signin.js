@@ -1,6 +1,5 @@
 var authentication_model = require("../model/authentication")
 
-
 module.exports = {
     signin: function (req, res) {
       let obj = {

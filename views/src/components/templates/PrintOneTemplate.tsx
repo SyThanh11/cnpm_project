@@ -20,16 +20,6 @@ export const PrintOneTemplate = () => {
                 </div>
             </div>
             <div className='mt-20'>
-                <label className="block mb-2 text-sm font-medium text-[#009EE2]">Thể loại</label>
-                <div className='input-content flex items-center'>
-                    <select className="border border-[#009EE2] text-sm rounded-lg block w-full p-2.5">
-                        <option selected>Chọn cách in</option> 
-                        <option value="0">In trắng đen</option>
-                        <option value="1">In màu</option>
-                    </select>
-                </div>
-            </div>
-            <div className='mt-20'>
                 <label className="block mb-2 text-sm font-medium text-[#009EE2]">Số mặt</label>
                 <div className='input-content flex items-center'>
                     <select className="border border-[#009EE2] text-sm rounded-lg block w-full p-2.5">
@@ -43,6 +33,12 @@ export const PrintOneTemplate = () => {
                 <label className="block mb-2 text-sm font-medium text-[#009EE2]">Số lượng</label>
                 <div className='input-content flex items-center'>
                     <input type="text" className="border border-[#009EE2] text-sm rounded-lg block w-full p-2.5" placeholder="Số lượng bản in" />
+                </div>
+            </div>
+            <div className='mt-20'>
+                <label className="block mb-2 text-sm font-medium text-[#009EE2]">Số trang in</label>
+                <div className='input-content flex items-center'>
+                    <input type="text" className="border border-[#009EE2] text-sm rounded-lg block w-full p-2.5" placeholder="20 trang" />
                 </div>
             </div>
             <div className="flex items-center mt-16 gap-4">

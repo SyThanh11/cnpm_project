@@ -1,93 +1,125 @@
-const Table_row = [
-    {
-      "Ngày và giờ": "12/1/2023 6:49pm",
-      "Loại giấy": "A4",
-      "Số lượng": 10,
-      "Trạng thái": "Hoàn thành"
-    },
-    {
-        "Ngày và giờ": "12/1/2023 6:49pm",
-        "Loại giấy": "A4",
-        "Số lượng": 10,
-        "Trạng thái": "Hoàn thành"
-    },
-    {
-        "Ngày và giờ": "12/1/2023 6:49pm",
-        "Loại giấy": "A4",
-        "Số lượng": 10,
-        "Trạng thái": "Hoàn thành"
-    },
-    {
-        "Ngày và giờ": "12/1/2023 6:49pm",
-        "Loại giấy": "A4",
-        "Số lượng": 10,
-        "Trạng thái": "Hoàn thành"
-    },
-    {
-        "Ngày và giờ": "12/1/2023 6:49pm",
-        "Loại giấy": "A4",
-        "Số lượng": 10,
-        "Trạng thái": "Hoàn thành"
-    },
-    {
-        "Ngày và giờ": "12/1/2023 6:49pm",
-        "Loại giấy": "A4",
-        "Số lượng": 10,
-        "Trạng thái": "Hoàn thành"
-    }
-]
-export const HistoryBuyTemplate = () => {
+// import { useNavigate } from 'react-router-dom'
+// import { PATH } from 'constant/config';
+import { useState, useEffect } from 'react';
+
+const HistoryBuyData = ({ header, data }) => {
     return (
-      <div className="PrintOneTemplate grid grid-cols-2">
-          <div className="left col-span-2 ml-[50px] py-10 mr-[50px]">
-              <h1 className="text-[#009EE2] font-bold text-36 pb-20 pt-10">Lịch sử mua giấy</h1>
-              <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
-              <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                  <thead className="text-xs text-gray-700 uppercase bg-blue-400 dark:bg-gray-700 dark:text-gray-400">
-                      <tr>
-                          <th scope="col" className="px-6 py-3 w-1/5 text-white text-center">
-                              Số thứ tự
-                          </th>
-                          <th scope="col" className="px-6 py-3 w-1/5 text-white text-center">
-                              Ngày và giờ
-                          </th>
-                          <th scope="col" className="px-6 py-3 w-1/5 text-white text-center">
-                              Loại giấy
-                          </th>
-                          <th scope="col" className="px-6 py-3 w-1/5 text-white text-center">
-                              Tên máy in
-                          </th>
-                          <th scope="col" className="px-6 py-3 w-1/5 text-white text-center">
-                              Trạng thái
-                          </th>
-                      </tr>
-                  </thead>
-                  <tbody>
-                    {Table_row.map((items, index) => (
-                      <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                        <th scope="row" className="px-6 py-4 text-gray-900 text-center">
-                            {index + 1}
-                        </th>
-                        <td className="px-6 py-4 text-center">
-                            {items["Ngày và giờ"]}
-                        </td>
-                        <td className="px-6 py-4 text-center">
-                            {items["Loại giấy"]}
-                        </td>
-                        <td className="px-6 py-4 text-center">
-                            {items["Số lượng"]}
-                        </td>
-                        <td className="px-6 py-4 text-center">
-                            {items["Trạng thái"]}
-                        </td>
-                    </tr>
-                    ))}
-                  </tbody>
-              </table>
+      <div className="flex flex-col w-full">
+          {header.map((headerData, rowIndex) => (
+              <div className="block mb-2 text-sm font-medium text-[#FFFFFF]" 
+                  key={rowIndex} style={{ display: 'flex', width: '100%', border: '1px solid #000', backgroundColor: '#00B9E2', textAlign: 'center', fontSize: '16px' }}>
+            
+              {headerData.map((cellData, cellIndex) => (
+                  <div key={cellIndex} style={{ flex: 1, padding: '15px' }}>
+                      {cellData}
+                  </div>
+              ))}
           </div>
-          </div>
-      </div>
-    )
-  }
+          ))}
   
-  export default HistoryBuyTemplate
+  
+          {data.map((rowData, rowIndex) => (
+              <div key={rowIndex} style={{ display: 'flex', width: '100%', border: '1px solid #ddd', textAlign: 'center' }}>
+                  {rowData.map((cellData, cellIndex) => (
+                      <div key={cellIndex} style={{ flex: 1, padding: '15px' }}>
+                          {cellData}
+                      </div>
+                  ))}
+              </div>
+          ))}
+      </div>
+    );
+};
+
+const PageNumbers = ({ numPages, onPageClick }) => {
+  const [clickedPage, setClickedPage] = useState(1);
+  const [hoveredPage, setHoveredPage] = useState(null);
+
+  const pageNumbers = Array.from({ length: numPages }, (_, index) => index + 1);
+
+  const handleMouseEnter = (pageNumber) => {
+      setHoveredPage(pageNumber);
+  };
+
+  const handleMouseLeave = () => {
+      setHoveredPage(null);
+  };
+
+  const handleClick = (pageNumber) => {
+    setClickedPage(pageNumber);
+    onPageClick(pageNumber);
+  };
+
+  const getPageNumberStyle = (pageNumber) => ({
+    margin: '0 8px',
+    padding: '10px',
+    cursor: 'pointer',
+    backgroundColor: '#fff',
+    color: clickedPage === pageNumber ? '#4200FF' : (hoveredPage === pageNumber ? '#4200FF' : '#000'),
+    borderRadius: '5px',
+    border: clickedPage === pageNumber ? '1px solid #4200FF' : (hoveredPage === pageNumber ? '1px solid #4200FF' : '1px solid #000'),
+    width: '35px',
+    height: '35px',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    fontWeight: 'bold',
+  });
+
+  return (
+    <div className="flex justify-end mt-20">
+      {pageNumbers.map((pageNumber) => (
+        <div
+          key={pageNumber}
+          style={getPageNumberStyle(pageNumber)}
+          onClick={() => handleClick(pageNumber)}
+          onMouseEnter={() => handleMouseEnter(pageNumber)}
+          onMouseLeave={handleMouseLeave}
+        >
+          {pageNumber}
+        </div>
+      ))}
+    </div>
+  );
+};
+
+
+export const HistoryBuyTemplate = () => {
+    // const navigate = useNavigate();
+    const tableHeader = [['Số thứ tự', 'Ngày và giờ', 'Loại giấy', 'Số lượng', 'Trạng thái']];
+    const [tableData, setTableData] = useState([
+      ['1', '28/11/2023 09:11 am', 'A3', '10', 'Hoàn thành'],
+      ['2', '28/11/2023 09:11 am', 'A4', '10', 'Đang thực hiện'],
+      ['3', '28/11/2023 09:11 am', 'A0', '10', 'Hoàn thành'],
+  ]);
+    const [currentPage, setCurrentPage] = useState(1);
+    const numberOfPages = 5;
+
+    const handlePageClick = (pageNumber) => {
+      const newData = generateDataForPage(pageNumber);
+      setTableData(newData);
+      setCurrentPage(pageNumber);
+  };
+  const generateDataForPage = (pageNumber) => {
+    return [
+        [`${(pageNumber-1)*3 + 1}`, '28/11/2023 09:11 am', 'A3', `${pageNumber}`, 'Hoàn thành'],
+        [`${(pageNumber-1)*3 + 2}`, '28/11/2023 09:11 am', 'A4', `${pageNumber}`, 'Đang thực hiện'],
+        [`${(pageNumber-1)*3 + 3}`, '28/11/2023 09:11 am', 'A0', `${pageNumber}`, 'Hoàn thành'],
+    ];
+  };
+  useEffect(() => {
+    handlePageClick(1);
+  }, []);
+
+  return (
+    <div className="HistoryPrintTemplate grid grid-cols-1">
+        <div className="col-span-1 ml-[50px] mr-[50px] py-10">
+            <h1 className="text-[#009EE2] font-bold text-36 pb-20 pt-10">Lịch sử mua giấy</h1>
+            <HistoryBuyData header={tableHeader} data={tableData} />
+            <PageNumbers numPages={numberOfPages} onPageClick={handlePageClick} />
+        </div>
+    </div>
+  )
+}
+
+export default HistoryBuyTemplate

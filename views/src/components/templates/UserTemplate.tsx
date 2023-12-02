@@ -24,7 +24,7 @@ export const UserTemplate = () => {
         </div>
         <div className="bottom absolute top-[51%] left-[33%]">
             <div className="flex items-center justify-center gap-50">
-                <div onClick={() => { navigate(PATH.printOne) }} className="text-center bg-white border-2 border-[#1B1BEF] px-14 py-20 rounded-[10px] hover:-translate-y-10 transition-all hover:cursor-pointer">
+                <div onClick={() => { navigate(PATH.printZero) }} className="text-center bg-white border-2 border-[#1B1BEF] px-14 py-20 rounded-[10px] hover:-translate-y-10 transition-all hover:cursor-pointer">
                     <h2 className="font-bold">PRINT</h2>
                     <p>In tài liệu, sách, <br/> photo, ...</p>
                 </div>

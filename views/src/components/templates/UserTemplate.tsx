@@ -2,8 +2,6 @@ import { PATH } from 'constant/config';
 import { useNavigate } from 'react-router-dom'
 import Modal from "./FeedbackModal";
 import React from "react";
-import Modal from "./FeedbackModal";
-import React from "react";
 
 export const UserTemplate = () => {
   const navigate = useNavigate();
@@ -45,12 +43,6 @@ export const UserTemplate = () => {
                 </>
             </Modal>
         </div>
-        <h1 className="text-center text-[40px] font-bold pt-26 text-[#009EE2]">Trải nghiệm ngay nào</h1>
-        <Modal isOpen={open} onClose={handleClose}>
-            <>
-                <h1>STUPID MODAL</h1>
-            </>
-        </Modal>
     </div>
   )
 }

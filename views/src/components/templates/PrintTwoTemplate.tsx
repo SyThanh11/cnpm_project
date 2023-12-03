@@ -1,5 +1,5 @@
 export const PrintTwoTemplate = () => {
-  return (
+    return (
     <div className="PrintTwoTemplate grid grid-cols-2">
         <div className="left col-span-1 ml-[50px] py-10">
             <h1 className="text-[#009EE2] font-bold text-36 pb-20 pt-10">Đăng ký địa điểm in</h1>
@@ -52,7 +52,7 @@ export const PrintTwoTemplate = () => {
             <img src="/img/DHBK_HCM-Catalogue-2015.jpg" alt="Location" className="h-[500px] w-[500px] py-50"></img>
         </div>
     </div>
-  )
+    )
 }
 
 export default PrintTwoTemplate

@@ -4,7 +4,7 @@ var connect_DB = mysql.createConnection({
     host: "localhost",
     user: "root",
     password: "",
-    database: ""
+    database: "simbsc"
 });
 
 connect_DB.connect(function(err) {

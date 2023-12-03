@@ -31,16 +31,17 @@ const Modal = ({ isOpen, onClose, onSubmit, children }) => {
         //         experienceScale: formData.name
         //     })
         //     .then((response) => {
-        //         if (response.status === 200 && response.data.code === 300)
-        //         setFormData({
-        //             name: '',
-        //             contactNumber: '',
-        //             mssv: '',
-        //             email: '',
-        //             comment: '',
-        //             experienceScale: 5
-        //         });
-        //         onClose();
+        //         if (response.status === 200 && response.data.code === 300) {
+        //             setFormData({
+        //                 name: '',
+        //                 contactNumber: '',
+        //                 mssv: '',
+        //                 email: '',
+        //                 comment: '',
+        //                 experienceScale: 5
+        //             });
+        //             onClose();
+        //         }
         //     })
         //     .catch((error) => {
         //         console.error("Error!!!!!!", error);

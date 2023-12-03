@@ -1,6 +1,11 @@
 // import { useNavigate } from 'react-router-dom'
 // import { PATH } from 'constant/config';
 import { useState, useEffect } from 'react';
+import axios from "axios";
+import Cookies from "universal-cookie";
+
+const cookies = new Cookies();
+const token = cookies.get("TOKEN");
 
 const HistoryPrintData = ({ header, data }) => {
     return (
@@ -86,6 +91,22 @@ const PageNumbers = ({ numPages, onPageClick }) => {
 
 export const HistoryPrintTemplate = () => {
     // const navigate = useNavigate();
+    const [PrintList, setPrintList] = useState([]);
+    useEffect(() => {
+      axios.post("http://localhost:8080/api/history/student/printings", {}, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      })
+      .then((response) => {
+        if (response.status === 200 && 'printHistory' in response.data) {
+          setPrintList(JSON.parse(response.data.printHistory));
+        }
+      })
+      .catch((error) => {
+        console.error("Error!!!!!!", error);
+      });
+    }, []);
     const tableHeader = [['Số thứ tự', 'Ngày và giờ', 'Loại giấy', 'Tên máy in', 'Trạng thái']];
     const [tableData, setTableData] = useState([
       ['1', '28/11/2023 09:11 am', 'A3', '10', 'Hoàn thành'],

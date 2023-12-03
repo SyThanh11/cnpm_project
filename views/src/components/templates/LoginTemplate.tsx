@@ -13,26 +13,27 @@ export const LoginTemplate = () => {
     const [errorMessage, setErrorMessage] = useState(null);
 
     const handleSubmit = (e) => {
-        e.preventDefault();
-        axios
-            .post("http://localhost:8080/api/signin", {
-                email: email,
-                password: password,
-            })
-            .then((response) => {
-                cookies.set("TOKEN", response.data.token, {
-                    path: "/",
-                });
-                setTimeout(() => {
-                    window.location.reload();
-                }, 500);
-                navigate(PATH.user);   
-            })
-            .catch((error) => {
-                if (error.response) {
-                    setErrorMessage(error.response.data.message);
-                }
-            });
+        // e.preventDefault();
+        // axios
+        //     .post("http://localhost:8080/api/signin", {
+        //         email: email,
+        //         password: password,
+        //     })
+        //     .then((response) => {
+        //         cookies.set("TOKEN", response.data.token, {
+        //             path: "/",
+        //         });
+        //         setTimeout(() => {
+        //             window.location.reload();
+        //         }, 500);
+        //         navigate(PATH.user);   
+        //     })
+        //     .catch((error) => {
+        //         if (error.response) {
+        //             setErrorMessage(error.response.data.message);
+        //         }
+        //     });
+        navigate(PATH.user);   
     };
 
     const navigate = useNavigate();

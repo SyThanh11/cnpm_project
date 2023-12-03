@@ -12,6 +12,7 @@ var cors = require('cors');
 const signinRoute = require('./routes/signin');
 const authorizationRoute = require("./routes/authorization");
 const historyRoute = require("./routes/history");
+const feedbackRoute = require("./routes/feedback");
 
 
 const limiter = rateLimit({
@@ -46,5 +47,6 @@ app.use(session({
 app.use("/api/signin", signinRoute);
 app.use("/api/authorization", authorizationRoute);
 app.use("/api/history", historyRoute);
+app.use("/api/feedback", feedbackRoute);
 
 app.listen(8080);

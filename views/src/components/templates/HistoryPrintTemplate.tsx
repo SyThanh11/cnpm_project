@@ -91,22 +91,23 @@ const PageNumbers = ({ numPages, onPageClick }) => {
 
 export const HistoryPrintTemplate = () => {
     // const navigate = useNavigate();
-    const [PrintList, setPrintList] = useState([]);
-    useEffect(() => {
-      axios.post("http://localhost:8080/api/history/student/printings", {}, {
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      })
-      .then((response) => {
-        if (response.status === 200 && 'printHistory' in response.data) {
-          setPrintList(JSON.parse(response.data.printHistory));
-        }
-      })
-      .catch((error) => {
-        console.error("Error!!!!!!", error);
-      });
-    }, []);
+    // const [PrintList, setPrintList] = useState([]);
+    // useEffect(() => {
+    //   axios.post("http://localhost:8080/api/history/student/printings", {}, {
+    //     headers: {
+    //       Authorization: `Bearer ${token}`
+    //     }
+    //   })
+    //   .then((response) => {
+    //     if (response.status === 200 && 'printHistory' in response.data) {
+    //       setPrintList(JSON.parse(response.data.printHistory));
+    //     }
+    //   })
+    //   .catch((error) => {
+    //     console.error("Error!!!!!!", error);
+    //   });
+    // }, []);
+    
     const tableHeader = [['Số thứ tự', 'Tên tài liệu', 'Ngày và giờ', 'Loại giấy', 'Tên máy in', 'Trạng thái']];
     const [tableData, setTableData] = useState([
       ['1', 'Harry Potter', '28/11/2023 09:11 am', 'A3', '10', 'Hoàn thành'],

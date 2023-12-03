@@ -90,23 +90,23 @@ const PageNumbers = ({ numPages, onPageClick }) => {
 
 export const HistoryBuyTemplate = () => {
     // const navigate = useNavigate();
-    const [BuyList, setBuyList] = useState([]);
-    useEffect(() => {
-      axios.post("http://localhost:8080/api/history/student/buyings", {}, {
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      })
-      .then((response) => {
-        console.log(response.data)
-        if (response.status === 200 && 'buyHistory' in response.data) {
-          setBuyList(JSON.parse(response.data.buyHistory));
-        }
-      })
-      .catch((error) => {
-        console.error("Error!!!!!!", error);
-      });
-    }, []);
+    // const [BuyList, setBuyList] = useState([]);
+    // useEffect(() => {
+    //   axios.post("http://localhost:8080/api/history/student/buyings", {}, {
+    //     headers: {
+    //       Authorization: `Bearer ${token}`
+    //     }
+    //   })
+    //   .then((response) => {
+    //     console.log(response.data)
+    //     if (response.status === 200 && 'buyHistory' in response.data) {
+    //       setBuyList(JSON.parse(response.data.buyHistory));
+    //     }
+    //   })
+    //   .catch((error) => {
+    //     console.error("Error!!!!!!", error);
+    //   });
+    // }, []);
 
     const tableHeader = [['Số thứ tự', 'Ngày và giờ', 'Loại giấy', 'Số lượng', 'Trạng thái']];
     const [tableData, setTableData] = useState([

@@ -128,6 +128,17 @@ export const HistoryBuyTemplate = () => {
         [`${(pageNumber-1)*3 + 2}`, '28/11/2023 09:11 am', 'A4', `${pageNumber}`, 'Đang thực hiện'],
         [`${(pageNumber-1)*3 + 3}`, '28/11/2023 09:11 am', 'A0', `${pageNumber}`, 'Hoàn thành'],
     ];
+    // const startIndex = (pageNumber - 1) * 3;
+    // const endIndex = startIndex + 3;
+    
+    // return BuyList.slice(startIndex, endIndex).map((item, index) => [
+    //   `${startIndex + index + 1}`,
+    //   item.documentName,
+    //   item.date,
+    //   item.paperType,
+    //   item.quantity,
+    //   item.status
+    // ]);
   };
   useEffect(() => {
     handlePageClick(1);

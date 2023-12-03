@@ -15,7 +15,7 @@ const HistoryPrintData = ({ header, data }) => {
                   key={rowIndex} style={{ display: 'flex', width: '100%', border: '1px solid #000', backgroundColor: '#00B9E2', textAlign: 'center', fontSize: '16px'}}>
             
               {headerData.map((cellData, cellIndex) => (
-                  <div key={cellIndex} style={{ flex: 1, padding: '15px' }}>
+                  <div key={cellIndex} style={{ flex: 1, padding: '14px' }}>
                       {cellData}
                   </div>
               ))}
@@ -26,7 +26,7 @@ const HistoryPrintData = ({ header, data }) => {
           {data.map((rowData, rowIndex) => (
               <div key={rowIndex} style={{ display: 'flex', width: '100%', border: '1px solid #ddd', textAlign: 'center' }}>
                   {rowData.map((cellData, cellIndex) => (
-                      <div key={cellIndex} style={{ flex: 1, padding: '15px' }}>
+                      <div key={cellIndex} style={{ flex: 1, padding: '14px' }}>
                           {cellData}
                       </div>
                   ))}
@@ -107,11 +107,11 @@ export const HistoryPrintTemplate = () => {
         console.error("Error!!!!!!", error);
       });
     }, []);
-    const tableHeader = [['Số thứ tự', 'Ngày và giờ', 'Loại giấy', 'Tên máy in', 'Trạng thái']];
+    const tableHeader = [['Số thứ tự', 'Tên tài liệu', 'Ngày và giờ', 'Loại giấy', 'Tên máy in', 'Trạng thái']];
     const [tableData, setTableData] = useState([
-      ['1', '28/11/2023 09:11 am', 'A3', '10', 'Hoàn thành'],
-      ['2', '28/11/2023 09:11 am', 'A4', '10', 'Đang thực hiện'],
-      ['3', '28/11/2023 09:11 am', 'A0', '10', 'Hoàn thành'],
+      ['1', 'Harry Potter', '28/11/2023 09:11 am', 'A3', '10', 'Hoàn thành'],
+      ['2', 'Harry Potter', '28/11/2023 09:11 am', 'A4', '10', 'Đang thực hiện'],
+      ['3', 'Harry Potter', '28/11/2023 09:11 am', 'A0', '10', 'Hoàn thành'],
   ]);
     const [currentPage, setCurrentPage] = useState(1);
     const numberOfPages = 5;
@@ -123,10 +123,21 @@ export const HistoryPrintTemplate = () => {
   };
   const generateDataForPage = (pageNumber) => {
     return [
-        [`${(pageNumber-1)*3 + 1}`, '28/11/2023 09:11 am', 'A3', `AH${pageNumber}`, 'Hoàn thành'],
-        [`${(pageNumber-1)*3 + 2}`, '28/11/2023 09:11 am', 'A4', `AH${pageNumber}`, 'Đang thực hiện'],
-        [`${(pageNumber-1)*3 + 3}`, '28/11/2023 09:11 am', 'A0', `AH${pageNumber}`, 'Hoàn thành'],
+        [`${(pageNumber-1)*3 + 1}`, 'Harry Potter', '28/11/2023 09:11 am', 'A3', `AH${pageNumber}`, 'Hoàn thành'],
+        [`${(pageNumber-1)*3 + 2}`, 'Harry Potter', '28/11/2023 09:11 am', 'A4', `AH${pageNumber}`, 'Đang thực hiện'],
+        [`${(pageNumber-1)*3 + 3}`, 'Harry Potter', '28/11/2023 09:11 am', 'A0', `AH${pageNumber}`, 'Hoàn thành'],
     ];
+    // const startIndex = (pageNumber - 1) * 3;
+    // const endIndex = startIndex + 3;
+    
+    // return PrintList.slice(startIndex, endIndex).map((item, index) => [
+    //   `${startIndex + index + 1}`,
+    //   item.documentName,
+    //   item.date,
+    //   item.paperType,
+    //   item.quantity,
+    //   item.status
+    // ]);
   };
   useEffect(() => {
     handlePageClick(1);

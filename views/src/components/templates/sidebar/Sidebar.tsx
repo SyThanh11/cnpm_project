@@ -8,18 +8,18 @@ export const Sidebar = () => {
   const isActiveSide1 = location.pathname === PATH.printOne;
   const isActiveSide2 = location.pathname === PATH.printTwo;
   return (
-    <div className="bg-[#cde5ff] h-[540px] flex flex-col justify-center items-center gap-20">
-        <NavLink to={PATH.printZero} className={isActiveSide0 ? "bg-[#009EE2] px-26 py-10 rounded-[10px]" : "px-26 py-10 rounded-[10px]"}  
+    <div className="h-screen bg-[#cde5ff] h-[540px] flex flex-col items-center gap-20">
+        <NavLink to={PATH.printZero} className={isActiveSide0 ? "bg-[#009EE2] mt-30 px-26 py-10 rounded-[10px]" : "px-26  mt-30 py-10 rounded-[10px]"}  
         onClick={() => {navigate(PATH.printZero)}}>
-            <h3 className={isActiveSide0 ? "font-bold text-white" : "font-bold"}>Bước 0</h3>
+            <h3 className={isActiveSide0 ? "font-bold text-white" : "font-bold"}>Bước 1</h3>
         </NavLink>
         <NavLink to={PATH.printOne} className={isActiveSide1 ? "bg-[#009EE2] px-26 py-10 rounded-[10px]" : "px-26 py-10 rounded-[10px]"}  
         onClick={() => {navigate(PATH.printOne)}}>
-            <h3 className={isActiveSide1 ? "font-bold text-white" : "font-bold"}>Bước 1</h3>
+            <h3 className={isActiveSide1 ? "font-bold text-white" : "font-bold"}>Bước 2</h3>
         </NavLink>
         <NavLink to={PATH.printTwo} className={isActiveSide2 ? "bg-[#009EE2] px-26 py-10 rounded-[10px]" : "px-26 py-10 rounded-[10px]"}  
         onClick={() => {navigate(PATH.printTwo)}}>
-            <h3 className={isActiveSide2 ? "font-bold text-white" : "font-bold"}>Bước 2</h3>
+            <h3 className={isActiveSide2 ? "font-bold text-white" : "font-bold"}>Bước 3</h3>
         </NavLink>
     </div>
   )

@@ -10,6 +10,7 @@ var cors = require('cors');
 
 
 const signinRoute = require('./routes/signin');
+const authorizationRoute = require("./routes/authorization");
 
 
 const limiter = rateLimit({
@@ -42,5 +43,6 @@ app.use(session({
 }));
 
 app.use("/api/signin", signinRoute);
+app.use("/api/authorization", authorizationRoute);
 
 app.listen(8080);

@@ -67,6 +67,9 @@ export const LoginTemplate = () => {
                         <button onClick={(e) => handleSubmit(e)} className="bg-[#009EE2] text-white border-2 border-[#009EE2] hover:border-[#2e6780] hover:bg-[#2e6780] hover:text-white transition-all font-bold py-6 px-34 rounded">
                             LOGIN
                         </button>
+                        {errorMessage &&
+                            <h5 className="mt-3 mb-0 p-0 text-danger">{errorMessage}</h5>
+                        }
                     </div>
                     <div className='flex items-center justify-center my-20'>
                         <p className='w-[150px] h-[1px] bg-black'></p>

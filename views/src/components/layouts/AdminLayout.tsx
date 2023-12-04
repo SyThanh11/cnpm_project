@@ -1,7 +1,7 @@
 import { Footer, Header, SidebarAdmin } from "components"
 import { Outlet } from 'react-router-dom'
 
-export const MainLayout = () => {
+export const AdminLayout = () => {
   return (
     <div>
         <Header />
@@ -18,4 +18,4 @@ export const MainLayout = () => {
   )
 }
 
-export default MainLayout
+export default AdminLayout

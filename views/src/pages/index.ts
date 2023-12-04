@@ -10,3 +10,7 @@ export * from './About'
 
 export * from './HistoryPrint'
 export * from './HistoryBuy'
+
+export * from './Admin'
+export * from './AdminConfig'
+export * from './AdminViewFeedback'

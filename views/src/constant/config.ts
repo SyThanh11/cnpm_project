@@ -9,5 +9,9 @@ export const PATH = {
     printThree: '/user/print/page-4',
     about: '/about',
     historyPrint: '/user/history/print',
-    historyBuy: '/user/history/buy'
+    historyBuy: '/user/history/buy',
+
+    admin: '/admin',
+    adminConfig: '/admin/config',
+    adminViewFeedback: '/admin/viewFeedback'
 }

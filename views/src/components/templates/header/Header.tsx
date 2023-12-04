@@ -53,7 +53,7 @@ export const Header = () => {
     }
   }, []);
 
-  const handleSignOut = (e) => {
+  const handleSignOut = () => {
     if (!authInfo.isLogin) {
       alert('Có lỗi xảy ra!');
       return;
@@ -64,6 +64,7 @@ export const Header = () => {
     setAuthInfo({ isLogin: false, isAdmin: false});
     navigate('/');
     console.log('Đã đăng xuất');
+    window.location.reload();
   }
 
   return (
@@ -86,12 +87,21 @@ export const Header = () => {
               </ul>
           </div>
           <div className="header-action col-span-1 flex items-center gap-20 justify-end">
+          {authInfo.isLogin == true ? null : (
             <button onClick={() => { navigate(PATH.login) }} className="bg-white text-[#1B1BEF] border-2 border-[#1B1BEF] hover:bg-[#1B1BEF] hover:text-white transition-all font-medium py-4 px-20 rounded">
               Login
             </button>
+          )}
+          {authInfo.isLogin == true ? null : (
             <button onClick={() => { navigate(PATH.signUp) }} className="bg-[#1B1BEF] text-white border-2 border-[#1B1BEF] hover:bg-white hover:text-[#1B1BEF] transition-all font-medium py-4 px-20 rounded">
               Sign up
             </button>
+          )}
+          {authInfo.isLogin == false ? null : (
+            <button onClick={handleSignOut} className="bg-[#1B1BEF] text-white border-2 border-[#1B1BEF] hover:bg-white hover:text-[#1B1BEF] transition-all font-medium py-4 px-20 rounded">
+              Sign out
+            </button>
+          )}
           </div>
         </div>
     </header>

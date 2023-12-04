@@ -1,21 +1,14 @@
-import { Footer, Header, SidebarAdmin } from "components"
+import { Footer, Header } from "components"
 import { Outlet } from 'react-router-dom'
 
 export const MainLayout = () => {
   return (
     <div>
-        <Header />
-        <main className="grid grid-cols-8">
-            <div className="col-span-1">
-                <SidebarAdmin />
-            </div>
-            <div className="col-span-7">
-                <Outlet />
-            </div>
-        </main>
-        <Footer />
+      <Header></Header>
+      <main>
+        <Outlet></Outlet>
+      </main>
+      <Footer></Footer>
     </div>
   )
 }
-
-export default MainLayout

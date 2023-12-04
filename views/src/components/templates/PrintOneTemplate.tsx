@@ -1,40 +1,10 @@
-import { useNavigate } from 'react-router-dom'
-import { useState } from 'react';
-import { PATH } from 'constant/config';
-// import axios from "axios";
-// import Cookies from "universal-cookie";
-
-// const cookies = new Cookies();
-// const property = cookies.get("PROPERTIES");
+import useFormContext from '../../hooks/useFormContext';
 
 export const PrintOneTemplate = () => {
-    const navigate = useNavigate();
-
-    // const [properties, setProperties] = useState({
-    //     file: '',
-    //     size: '',
-    //     pages: '',
-    //     copies: '',
-    //     sided: '',
-    //     printer: '',
-    //     time: ''
-    // });
-
-    // setProperties(property);
-
-    // const handleInputChange = (fieldName, value) => {
-    //     setProperties((prevData) => ({
-    //         ...prevData,
-    //         [fieldName]: value,
-    //     }));
-    // };
-
-    const handleSubmit = (e) => {
-        // e.preventDefault();
-        // cookies.set("PROPERTIES", properties, {path: "/"});
-        navigate(PATH.printTwo);   
+    const { data, handleChange } = useFormContext();
+    const handleCustomPageText = (e) => {
+        data.onePageNumbers = e.target.value;
     };
-
     return (
     <div className="PrintOneTemplate grid grid-cols-2">
         <div className="left col-span-1 ml-[50px] py-10">
@@ -42,9 +12,9 @@ export const PrintOneTemplate = () => {
             <div>
                 <label className="block mb-2 text-sm font-medium text-[#009EE2]">Khổ giấy</label>
                 <div className='input-content flex items-center'>
-                    <select className="border border-[#009EE2] text-sm rounded-lg block w-full p-2.5">
+                    <select name="onePageSize" value={data.onePageSize} onChange={handleChange} className="border border-[#009EE2] text-sm rounded-lg block w-full p-2.5">
                         <option value="A3">A3</option>
-                        <option value="A4" selected>A4</option>
+                        <option value="A4">A4</option>
                         <option value="A5">A5</option>
                         <option value="A6">A6</option>
                         <option value="Letter">Letter</option>
@@ -54,7 +24,7 @@ export const PrintOneTemplate = () => {
             <div className='mt-20'>
                 <label className="block mb-2 text-sm font-medium text-[#009EE2]">Số lượng</label>
                 <div className='input-content flex items-center'>
-                    <input type="number" className="border border-[#009EE2] text-sm rounded-lg block w-full p-2.5" placeholder="1" min="1"/>
+                    <input type="number" name="oneCopies" value={data.oneCopies} onChange={handleChange} className="border border-[#009EE2] text-sm rounded-lg block w-full p-2.5" placeholder="1" min="1"/>
                 </div>
             </div>
             <div className="flex items-center mb-4">
@@ -62,31 +32,23 @@ export const PrintOneTemplate = () => {
             <div className="mt-20">
                 <label className="block mb-2 text-sm font-medium text-[#009EE2]">Số trang</label>
                 <div className="flex items-center mt-16">
-                    <input type="radio" value="all-page" name="page-number" className="w-14 h-14 text-blue-600 bg-white border border-[#009EE2]"/>
+                    <input type="radio" name="onePageNumbers" value="all-pages" onChange={handleChange}
+                    className="w-14 h-14 text-blue-600 bg-white border border-[#009EE2]" checked={data.onePageNumbers === 'all-pages'}/>
                     <label className="ml-2 text-sm font-medium text-gray-900">Toàn bộ trang</label>
                 </div>
                 <div className="flex items-center mt-16">
-                    <input type="radio" value="custom-page" name="page-number" className="w-14 h-14 text-blue-600 bg-white border border-[#009EE2]"/>
-                    <label className="ml-2 text-sm font-medium text-gray-900">Tùy chỉnh: </label><input type='text' className='ml-10 text-sm border border-[#009EE2] rounded-lg block' placeholder='e.g. 1-5, 8, 11-13'/>
+                    <input type="radio" value="custom-pages" name="onePageNumbers" onChange={handleChange}  className="w-14 h-14 text-blue-600 bg-white border border-[#009EE2]"/>
+                    <label className="ml-2 text-sm font-medium text-gray-900">Tùy chỉnh: </label><input id='custom-pages' onChange={handleCustomPageText} type='text' className='disabled ml-10 text-sm border border-[#009EE2] rounded-lg block' placeholder='e.g. 1-5, 8, 11-13' disabled={!data.onePageNumbers || !data.onePageNumbers.includes('custom-pages')}/>
                 </div>
             </div>
             <div className='mt-20'>
                 <label className="block mb-2 text-sm font-medium text-[#009EE2]">Số mặt</label>
                 <div className='input-content flex items-center'>
-                    <select className="border border-[#009EE2] text-sm rounded-lg block w-full p-2.5">
-                        <option value="0" selected>In một mặt</option> 
-                        <option value="1">In hai mặt</option>
+                    <select name='onePageSides' value={data.onePageSides} onChange={handleChange}  className="border border-[#009EE2] text-sm rounded-lg block w-full p-2.5">
+                        <option value="1" selected>In một mặt</option> 
+                        <option value="2">In hai mặt</option>
                     </select>
                 </div>
-            </div>
-            <div className="flex items-center mt-16 gap-4">
-                <input type="checkbox" value="0" name="agree" className="w-14 h-14 text-blue-600 bg-white border border-[#009EE2]"/>
-                <label className="ml-2 text-sm font-medium text-gray-900">Tôi đồng ý với các Điều khoản dịch vụ </label>
-            </div>
-            <div className='flex items-center justify-end py-20'>
-                <button onClick={(e) => handleSubmit(e)} className="bg-[#009EE2] text-white border-2 border-[#009EE2] hover:border-[#2e6780] hover:bg-[#2e6780] hover:text-white transition-all font-bold py-6 px-34 rounded">
-                    Tiếp theo
-                </button>
             </div>
         </div>
     </div>

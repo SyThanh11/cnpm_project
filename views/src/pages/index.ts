@@ -5,6 +5,7 @@ export * from './User'
 export * from './PrintZero'
 export * from './PrintOne'
 export * from './PrintTwo'
+export * from './PrintThree'
 export * from './About'
 
 export * from './HistoryPrint'

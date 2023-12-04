@@ -1,5 +1,4 @@
-import {useState} from 'react'
-
+import useFormContext from '../../hooks/useFormContext';
 // Import Worker
 import { Worker } from '@react-pdf-viewer/core';
 // Import the main Viewer component
@@ -13,17 +12,14 @@ import '@react-pdf-viewer/default-layout/lib/styles/index.css';
 
 // drag drop file component
 function DragDropFile() {
+    const {data, handleChange, pdfFile, setPdfFile, pdfError, setPdfError} = useFormContext();
     // creating new plugin instance
     const defaultLayoutPluginInstance = defaultLayoutPlugin();
-    // pdf file onChange state
-    const [pdfFile, setPdfFile]=useState(null);
-    // pdf file error state
-    const [pdfError, setPdfError]=useState('');
     // handle file onChange event
     const allowedFiles = ['application/pdf'];
     const handleFile = (e) =>{
         let selectedFile = e.target.files[0];
-    // console.log(selectedFile.type);
+        handleChange(e);
         if(selectedFile){
             if(selectedFile&&allowedFiles.includes(selectedFile.type)){
             let reader = new FileReader();
@@ -42,11 +38,12 @@ function DragDropFile() {
         console.log('please select a PDF');
         }
     }
+    // loadFile(data.zeroFile);
     return (
     <div className="container">
     <form>
         {/* <label className="block mb-2 font-medium">Tải file</label> */}
-        <input type='file' className="block text-sm w-full text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none"
+        <input type='file' name='zeroFile' className="block text-sm w-full text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none"
         onChange={handleFile}></input>
 
         {/* we will display error message in case user select some file

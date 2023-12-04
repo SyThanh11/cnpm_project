@@ -1,49 +1,25 @@
-import { Link, Navigate, useNavigate } from 'react-router-dom'
-import { useState } from 'react';
-import { PATH } from 'constant/config';
-// import axios from "axios";
-// import Cookies from "universal-cookie";
-
-// const cookies = new Cookies();
-// const property = cookies.get("PROPERTIES");
-
+import useFormContext from '../../hooks/useFormContext';
 export const PrintTwoTemplate = () => {
-    // const [properties, setProperties] = useState({
-    //     file: '',
-    //     size: '',
-    //     pages: '',
-    //     copies: '',
-    //     sided: '',
-    //     printer: '',
-    //     time: ''
-    // });
-
-    // setProperties(property);
-
-    // const handleInputChange = (fieldName, value) => {
-    //     setProperties((prevData) => ({
-    //         ...prevData,
-    //         [fieldName]: value,
-    //     }));
-    // };
-
-    const handleSubmit = (e) => {
-        // e.preventDefault();
-        // cookies.set("PROPERTIES", properties, {path: "/"}); 
-        navigate(PATH.user);  
+    const { data, handleChange } = useFormContext();
+    const calculateEstimateTime = () => {
+        // Thêm random vô
+        if (data.twoLocation && data.twoDate && data.twoLocation) {
+            document.getElementById('estimate-time').textContent = `Thứ hai (04/12/2023) - 8:00 AM - Tòa ${data.twoLocation} - Máy in HP-200`;
+        }
     };
-
-    const navigate = useNavigate();
-    
+    const handleForm = (e) => {
+        handleChange(e);
+        calculateEstimateTime();
+    };
+    // document.getElementById('estimate-time').textContent = "0:0:0 1:0";
     return (
     <div className="PrintTwoTemplate grid grid-cols-2">
         <div className="left col-span-1 ml-[50px] py-10">
             <h1 className="text-[#009EE2] font-bold text-36 pb-20 pt-10">Đăng ký địa điểm in</h1>
             <div>
-                <label className="block mb-2 text-sm font-medium text-[#009EE2]">Máy in</label>
+                <label className="block mb-2 text-sm font-medium text-[#009EE2]">Nơi in</label>
                 <div className='input-content flex items-center'>
-                    <select className="border border-[#009EE2] text-sm rounded-lg block w-full p-2.5">
-                        <option selected>Chọn máy in</option>
+                    <select name='twoLocation' value={data.twoLocation} onChange={handleForm} className="border border-[#009EE2] text-sm rounded-lg block w-full p-2.5">
                         <option value="A2">Tòa A2</option>
                         <option value="A3">Tòa A3</option>
                         <option value="B1">Tòa B1</option>
@@ -56,37 +32,26 @@ export const PrintTwoTemplate = () => {
                 </div>
             </div>
             <div className='mt-20'>
-                <label className="block mb-2 text-sm font-medium text-[#009EE2]">Thời gian</label>
+                <label className="block mb-2 text-sm font-medium text-[#009EE2]">Thời gian nhận</label>
                 <div className='input-content flex items-center'>
-                    <select className="border border-[#009EE2] text-sm rounded-lg block w-full p-2.5">
-                        <option selected>Chọn thời gian</option> 
-                        <option value="0">Tiết 1</option>
-                        <option value="1">Tiết 2</option>
-                        <option value="2">Tiết 3</option>
-                        <option value="3">Tiết 4</option>
-                        <option value="4">Tiết 5</option>
-                        <option value="5">Tiết 6</option>
-                        <option value="6">Tiết 7</option>
-                        <option value="7">Tiết 8</option>
-                        <option value="8">Tiết 9</option>
-                        <option value="9">Tiết 10</option>
-                        <option value="10">Tiết 11</option>
-                        <option value="11">Tiết 12</option>
-                        <option value="12">Tiết 13</option>
-                        <option value="13">Tiết 14</option>
-                        <option value="14">Tiết 15</option>
-                    </select>
+                    <input id='date' type='date' name='twoDate' value={data.twoDate} onChange={handleForm} className="border border-[#009EE2] text-sm rounded-lg block w-full p-2.5">
+                    </input>
+                    <input id='time' type='time' name='twoTime' value={data.twoTime} onChange={handleForm} className="border border-[#009EE2] text-sm rounded-lg block w-full p-2.5">
+                    </input>
                 </div>
             </div>
-            <div className='flex items-center justify-end py-20'>
-                <button onClick={(e) => handleSubmit(e)} className="bg-[#009EE2] text-white border-2 border-[#009EE2] hover:border-[#2e6780] hover:bg-[#2e6780] hover:text-white transition-all font-bold py-6 px-34 rounded">
-                    Hoàn thành
-                </button>
+            <div className="mt-20">
+            <p className="block mb-2 text-sm font-medium text-[#009EE2]">Thời gian hoàn thành dự kiến:</p>
+            <p id='estimate-time' className='text-rose-600'></p> 
+            </div>
+            <div className="flex items-center mt-16 gap-4">
+                <input type="checkbox" value="True" checked={data.oneIsAgree} name="oneIsAgree" onChange={handleChange} className="w-14 h-14 text-blue-600 bg-white border border-[#009EE2]"/>
+                <label className="ml-2 text-sm font-medium text-gray-900">Tôi đồng ý với các <a href="#" className="text-blue-600 hover:underline dark:text-blue-500">Điều khoản dịch vụ</a>.</label>
             </div>
         </div>
-        <div className="right col-span-1 flex justify-center items-center ">
+        {/* <div className="right col-span-1 flex justify-center items-center ">
             <img src="/img/DHBK_HCM-Catalogue-2015.jpg" alt="Location" className="h-[500px] w-[500px] py-50"></img>
-        </div>
+        </div> */}
     </div>
     )
 }

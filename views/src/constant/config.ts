@@ -3,10 +3,11 @@ export const PATH = {
     login: '/login',
     signUp: '/sign-up',
     user: '/user',
-    printZero: '/user/print/page-0',
-    printOne: '/user/print/page-1',
+    printZero: '/user/print/page-1',
+    printOne: '/user/print/page-2',
+    printTwo: '/user/print/page-3',
+    printThree: '/user/print/page-4',
     about: '/about',
-    printTwo: '/user/print/page-2',
     historyPrint: '/user/history/print',
     historyBuy: '/user/history/buy'
 }

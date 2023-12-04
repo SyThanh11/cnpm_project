@@ -2,7 +2,7 @@ var connect_DB = require('./connect_db')
 var mysql = require("mysql")
 
 function getPrintListSPSO(res) {
-    connect_DB.query("SELECT * FROM printings", function (err, result, fields) {
+    connect_DB.query("SELECT * FROM members", function (err, result, fields) {
         if (err) res.json({ code: 500 });
         res.json({ printHistory: JSON.stringify(result) });
     });

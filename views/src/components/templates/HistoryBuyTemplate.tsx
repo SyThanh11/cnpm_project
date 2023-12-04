@@ -90,6 +90,7 @@ const PageNumbers = ({ numPages, onPageClick }) => {
 
 export const HistoryBuyTemplate = () => {
     // const navigate = useNavigate();
+    
     // const [BuyList, setBuyList] = useState([]);
     // useEffect(() => {
     //   axios.post("http://localhost:8080/api/history/student/buyings", {}, {

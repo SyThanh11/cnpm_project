@@ -91,6 +91,7 @@ const PageNumbers = ({ numPages, onPageClick }) => {
 
 export const HistoryPrintTemplate = () => {
     // const navigate = useNavigate();
+    
     // const [PrintList, setPrintList] = useState([]);
     // useEffect(() => {
     //   axios.post("http://localhost:8080/api/history/student/printings", {}, {

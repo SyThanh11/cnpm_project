@@ -1,4 +1,40 @@
+import { Link, Navigate, useNavigate } from 'react-router-dom'
+import { useState } from 'react';
+import { PATH } from 'constant/config';
+// import axios from "axios";
+// import Cookies from "universal-cookie";
+
+// const cookies = new Cookies();
+// const property = cookies.get("PROPERTIES");
+
 export const PrintTwoTemplate = () => {
+    // const [properties, setProperties] = useState({
+    //     file: '',
+    //     size: '',
+    //     pages: '',
+    //     copies: '',
+    //     sided: '',
+    //     printer: '',
+    //     time: ''
+    // });
+
+    // setProperties(property);
+
+    // const handleInputChange = (fieldName, value) => {
+    //     setProperties((prevData) => ({
+    //         ...prevData,
+    //         [fieldName]: value,
+    //     }));
+    // };
+
+    const handleSubmit = (e) => {
+        // e.preventDefault();
+        // cookies.set("PROPERTIES", properties, {path: "/"}); 
+        navigate(PATH.user);  
+    };
+
+    const navigate = useNavigate();
+    
     return (
     <div className="PrintTwoTemplate grid grid-cols-2">
         <div className="left col-span-1 ml-[50px] py-10">
@@ -43,7 +79,7 @@ export const PrintTwoTemplate = () => {
                 </div>
             </div>
             <div className='flex items-center justify-end py-20'>
-                <button className="bg-[#009EE2] text-white border-2 border-[#009EE2] hover:border-[#2e6780] hover:bg-[#2e6780] hover:text-white transition-all font-bold py-6 px-34 rounded">
+                <button onClick={(e) => handleSubmit(e)} className="bg-[#009EE2] text-white border-2 border-[#009EE2] hover:border-[#2e6780] hover:bg-[#2e6780] hover:text-white transition-all font-bold py-6 px-34 rounded">
                     Hoàn thành
                 </button>
             </div>

@@ -1,11 +1,71 @@
 import { PATH } from 'constant/config';
 import './style.scss'
 import { useNavigate } from 'react-router-dom'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import Cookies from "universal-cookie";
+import axios from "axios";
 
 export const Header = () => {
   const navigate = useNavigate();
   const [page, setPage] = useState("Home");
+  const [authInfo, setAuthInfo] = useState({
+    isLogin: false,
+    isAdmin: false,
+  });
+  const cookies = new Cookies();
+  
+  useEffect(() => {
+    const token = cookies.get('TOKEN');
+    console.log(`cookies: token=${token}`);
+    if (token === undefined) {
+      setAuthInfo(() => ({ isLogin: false, isAdmin: false }));
+    }
+
+    else {
+      axios
+        .post('http://localhost:8080/api/authorization/student', {}, {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        })
+        .then((response) => {
+          console.log(response.data);
+          setAuthInfo({ isLogin: true, isAdmin: false});
+        })
+        .catch((error) => {
+          console.error(error);
+          setAuthInfo({ isLogin: false, isAdmin: false});
+        });
+      
+      axios
+        .post('http://localhost:8080/api/authorization/admin', {}, {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        })
+        .then((response) => {
+          console.log(response.data);
+          setAuthInfo({ isLogin: true, isAdmin: true});
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }
+  }, []);
+
+  const handleSignOut = (e) => {
+    if (!authInfo.isLogin) {
+      alert('Có lỗi xảy ra!');
+      return;
+    }
+    cookies.remove('TOKEN', {
+      path: "/",
+    });
+    setAuthInfo({ isLogin: false, isAdmin: false});
+    navigate('/');
+    console.log('Đã đăng xuất');
+  }
+
   return (
     <header className='flex items-center'>
         <div className='grid grid-cols-4 container'>

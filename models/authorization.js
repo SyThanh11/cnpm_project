@@ -71,7 +71,7 @@ async function authorizeAdmin(req, res, next) {
       return res.status(403).json({ message: "Người dùng đang bị khoá!" });
     }
     
-    if (result[0].permission != "SPSO") {
+    if (result[0].permission != "Thành viên ban chủ nhiệm") {
       return res.status(403).json({ message: "Người dùng không có quyền truy cập trang hay tác vụ này!" });
     }
     

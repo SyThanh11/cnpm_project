@@ -46,6 +46,7 @@ const Modal = ({ isOpen, onClose, onSubmit, children }) => {
         //     .catch((error) => {
         //         console.error("Error!!!!!!", error);
         //     });
+        
         setFormData({
             name: '',
             contactNumber: '',

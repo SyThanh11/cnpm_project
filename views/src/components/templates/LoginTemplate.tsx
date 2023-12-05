@@ -33,6 +33,7 @@ export const LoginTemplate = () => {
                     setErrorMessage(error.response.data.message);
                 }
             });
+        // navigate(PATH.user);   
     };
 
     const navigate = useNavigate();

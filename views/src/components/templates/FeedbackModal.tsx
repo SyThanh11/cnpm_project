@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import axios from "axios";
 
 const Modal = ({ isOpen, onClose, onSubmit, children }) => {
     const [formData, setFormData] = useState({
@@ -21,6 +22,31 @@ const Modal = ({ isOpen, onClose, onSubmit, children }) => {
 
     const handleSubmit = () => {
         onSubmit(formData);
+        // axios.post("http://localhost:8080/api/feedback/student/give", {
+        //         name: formData.name,
+        //         contactNumber: formData.name,
+        //         mssv: formData.name,
+        //         email: formData.name,
+        //         comment: formData.name,
+        //         experienceScale: formData.name
+        //     })
+        //     .then((response) => {
+        //         if (response.status === 200 && response.data.code === 300) {
+        //             setFormData({
+        //                 name: '',
+        //                 contactNumber: '',
+        //                 mssv: '',
+        //                 email: '',
+        //                 comment: '',
+        //                 experienceScale: 5
+        //             });
+        //             onClose();
+        //         }
+        //     })
+        //     .catch((error) => {
+        //         console.error("Error!!!!!!", error);
+        //     });
+        
         setFormData({
             name: '',
             contactNumber: '',

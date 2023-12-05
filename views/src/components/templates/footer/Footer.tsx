@@ -2,7 +2,7 @@ import { SendOutlined, FacebookFilled, TwitterOutlined, GithubOutlined } from "@
 import './style.scss'
 
 export const Footer = () => {
-  return (
+    return (
     <footer>
         <div className="footer-top">
             <div className="flex justify-center items-center gap-20 h-[80px] container"> 
@@ -38,7 +38,7 @@ export const Footer = () => {
             </div>
         </div>
     </footer>
-  )
+    )
 }
 
 export default Footer

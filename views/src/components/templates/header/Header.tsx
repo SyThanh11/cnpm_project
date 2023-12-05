@@ -1,11 +1,72 @@
 import { PATH } from 'constant/config';
 import './style.scss'
 import { useNavigate } from 'react-router-dom'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import Cookies from "universal-cookie";
+import axios from "axios";
 
 export const Header = () => {
   const navigate = useNavigate();
   const [page, setPage] = useState("Home");
+  const [authInfo, setAuthInfo] = useState({
+    isLogin: false,
+    isAdmin: false,
+  });
+  const cookies = new Cookies();
+  
+  useEffect(() => {
+    const token = cookies.get('TOKEN');
+    console.log(`cookies: token=${token}`);
+    if (token === undefined) {
+      setAuthInfo(() => ({ isLogin: false, isAdmin: false }));
+    }
+
+    else {
+      axios
+        .post('http://localhost:8080/api/authorization/student', {}, {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        })
+        .then((response) => {
+          console.log(response.data);
+          setAuthInfo({ isLogin: true, isAdmin: false});
+        })
+        .catch((error) => {
+          console.error(error);
+          setAuthInfo({ isLogin: false, isAdmin: false});
+        });
+      
+      axios
+        .post('http://localhost:8080/api/authorization/admin', {}, {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        })
+        .then((response) => {
+          console.log(response.data);
+          setAuthInfo({ isLogin: true, isAdmin: true});
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }
+  }, []);
+
+  const handleSignOut = () => {
+    if (!authInfo.isLogin) {
+      alert('Có lỗi xảy ra!');
+      return;
+    }
+    cookies.remove('TOKEN', {
+      path: "/",
+    });
+    setAuthInfo({ isLogin: false, isAdmin: false});
+    navigate('/');
+    console.log('Đã đăng xuất');
+    window.location.reload();
+  }
+
   return (
     <header className='flex items-center'>
         <div className='grid grid-cols-4 container'>
@@ -26,12 +87,21 @@ export const Header = () => {
               </ul>
           </div>
           <div className="header-action col-span-1 flex items-center gap-20 justify-end">
-            <button onClick={() => { navigate(PATH.login) }} className="bg-white text-[#1B1BEF] border-2 border-[#1B1BEF] hover:bg-[#1B1BEF] hover:text-white transition-all font-medium py-4 px-20 rounded">
+          {authInfo.isLogin == true ? null : (
+            <button onClick={() => { navigate(PATH.loginRoute) }} className="bg-white text-[#1B1BEF] border-2 border-[#1B1BEF] hover:bg-[#1B1BEF] hover:text-white transition-all font-medium py-4 px-20 rounded">
               Login
             </button>
+          )}
+          {authInfo.isLogin == true ? null : (
             <button onClick={() => { navigate(PATH.signUp) }} className="bg-[#1B1BEF] text-white border-2 border-[#1B1BEF] hover:bg-white hover:text-[#1B1BEF] transition-all font-medium py-4 px-20 rounded">
               Sign up
             </button>
+          )}
+          {authInfo.isLogin == false ? null : (
+            <button onClick={handleSignOut} className="bg-[#1B1BEF] text-white border-2 border-[#1B1BEF] hover:bg-white hover:text-[#1B1BEF] transition-all font-medium py-4 px-20 rounded">
+              Sign out
+            </button>
+          )}
           </div>
         </div>
     </header>

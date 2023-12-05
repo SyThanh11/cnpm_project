@@ -45,7 +45,6 @@ function signin(res, obj) {
           res.status(500).json({ message: "Hệ thống gặp vấn đề. Vui lòng thử lại sau" });
       });
   })
-  //res.json({ data: JSON.stringify("Logged in") });
 }
 
 module.exports = { checkNoEmpty, signin }

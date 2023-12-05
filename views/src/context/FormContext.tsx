@@ -20,8 +20,9 @@ export const FormProvider = ({ children }) => {
         oneCopies: 1,
         onePageNumbers: "all-pages",
         onePageSides: 1,
-        oneIsAgree: false,
-        twoLocation: "",
+        twoIsAgree: false,
+        twoLocation: "not-selected",
+        twoPrinter: "",
         twoDate: null,
         twoTime: null,
         threeIsPaid: false
@@ -47,6 +48,7 @@ export const FormProvider = ({ children }) => {
                 ...prevData,
                 [name]: value
             }))
+            // alert(JSON.stringify(data))
         }
     
 

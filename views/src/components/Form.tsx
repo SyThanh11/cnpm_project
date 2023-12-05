@@ -31,7 +31,7 @@ const Form = () => {
     const content = (
         <form className="" onSubmit={handleSubmit}>
             <FormInputs />
-            <div className="pt-10 button-container">
+            <div className="pt-15 button-container">
             <button type="button" className={disablePrev ? `button ${prevHide} bg-[#009EE2] text-white border-2 border-[#009EE2] transition-all font-bold py-6 px-34 rounded-[10px] opacity-50 cursor-not-allowed mx-1` : `button ${prevHide} bg-[#009EE2] text-white border-2 border-[#009EE2] hover:border-[#2e6780] hover:bg-[#2e6780] hover:text-white transition-all font-bold py-6 px-34 rounded-[10px] mx-1`} onClick={handlePrev} disabled={disablePrev}>Quay lại</button>
 
             <button type="button" className={disableNext ? `button ${nextHide} bg-[#009EE2] text-white border-2 border-[#009EE2] transition-all font-bold py-6 px-34 rounded-[10px] opacity-50 cursor-not-allowed mx-1` : `button ${nextHide} bg-[#009EE2] text-white border-2 border-[#009EE2] hover:border-[#2e6780] hover:bg-[#2e6780] hover:text-white transition-all font-bold py-6 px-34 rounded-[10px] mx-1`} onClick={handleNext} disabled={disableNext}>Tiếp theo</button>

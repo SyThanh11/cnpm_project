@@ -60,6 +60,7 @@ export const LoginTemplate = ({Admin}) => {
             .catch((error) => {
                 if (error.response) {
                     setErrorMessage(error.response.data.message);
+                    window.alert(errorMessage);
                 }
             });
         // navigate(PATH.user);   

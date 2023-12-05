@@ -30,6 +30,13 @@ export const AdminConfigTemplate = () => {
                 </div>
             </div>
 
+            <div className='mt-20'>
+                <label className="block mb-2 text-sm font-medium text-[#009EE2]">Ngày làm mới số giấy in mỗi tháng</label>
+                <div className='input-content flex items-center'>
+                    <input type="number" className="border border-[#009EE2] text-sm rounded-lg block w-full p-2.5" placeholder="1" min = "1" max="31" value={inputDateValue} onChange={handleInputDateChange}/>
+                </div>
+            </div>
+
             <div className="flex items-center mb-4"></div>
             <div className="mt-20">
                 <label className="block mb-2 text-sm font-medium text-[#009EE2]">Định dạng file</label>
@@ -44,13 +51,6 @@ export const AdminConfigTemplate = () => {
                 <div className="flex items-center mt-16">
                     <input type="checkbox" value="txt" name="file-type" className="w-14 h-14 text-blue-600 bg-white border border-[#009EE2]"/>
                     <label className="ml-2 text-sm font-medium text-gray-900">.txt</label>
-                </div>
-            </div>
-
-            <div className='mt-20'>
-                <label className="block mb-2 text-sm font-medium text-[#009EE2]">Ngày làm mới số giấy in mỗi tháng</label>
-                <div className='input-content flex items-center'>
-                    <input type="number" className="border border-[#009EE2] text-sm rounded-lg block w-full p-2.5" placeholder="1" min = "1" max="31" value={inputDateValue} onChange={handleInputDateChange}/>
                 </div>
             </div>
 

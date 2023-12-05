@@ -92,7 +92,7 @@ export const HistoryPrintTemplate = () => {
 
     const [PrintList, setPrintList] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
-    const numberOfPages = 5;
+    const [numberOfPages, setNumberOfPages] = useState(1);
     
     const tableHeader = [['Số thứ tự', 'Tên tài liệu', 'Ngày và giờ', 'Loại giấy', 'Tên máy in', 'Trạng thái']];
     const [tableData, setTableData] = useState([
@@ -102,11 +102,6 @@ export const HistoryPrintTemplate = () => {
     ]);
 
     const handlePageClick = (pageNumber) => {
-      const newData = generateDataForPage(pageNumber);
-      setTableData(newData);
-      setCurrentPage(pageNumber);
-    };
-    useEffect(() => {
       axios.post("http://localhost:8080/api/history/admin/printings", {}, {
         headers: {
           Authorization: `Bearer ${token}`
@@ -114,15 +109,22 @@ export const HistoryPrintTemplate = () => {
       })
       .then((response) => {
         if (response.status === 200 && 'printHistory' in response.data) {
-          setPrintList(JSON.parse(response.data.printHistory));
+          const fetchedPrintList = JSON.parse(response.data.printHistory);
+          setPrintList(fetchedPrintList);
+
+          const calculatedNumberOfPages = Math.ceil(fetchedPrintList.length / 3);
+          setNumberOfPages(calculatedNumberOfPages);
+
+          const newData = generateDataForPage(pageNumber);
+          setTableData(newData);
+          setCurrentPage(pageNumber);
         }
       })
       .catch((error) => {
         console.error("Error!!!!!!", error);
       });
-      handlePageClick(1);
-    }, []);
-
+    };
+  
     const generateDataForPage = (pageNumber) => {
       const startIndex = (pageNumber - 1) * 3;
       const endIndex = startIndex + 3;
@@ -134,7 +136,11 @@ export const HistoryPrintTemplate = () => {
         item.password,
         item.state
       ]);
-  };
+    };
+
+    useEffect(() => {
+      handlePageClick(1);
+    }, []);
 
     return (
       <div className="HistoryPrintTemplate grid grid-cols-1">

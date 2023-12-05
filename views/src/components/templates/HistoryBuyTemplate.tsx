@@ -89,61 +89,58 @@ const PageNumbers = ({ numPages, onPageClick }) => {
 
 
 export const HistoryBuyTemplate = () => {
-    // const navigate = useNavigate();
-    
-    // const [BuyList, setBuyList] = useState([]);
-    // useEffect(() => {
-    //   axios.post("http://localhost:8080/api/history/student/buyings", {}, {
-    //     headers: {
-    //       Authorization: `Bearer ${token}`
-    //     }
-    //   })
-    //   .then((response) => {
-    //     console.log(response.data)
-    //     if (response.status === 200 && 'buyHistory' in response.data) {
-    //       setBuyList(JSON.parse(response.data.buyHistory));
-    //     }
-    //   })
-    //   .catch((error) => {
-    //     console.error("Error!!!!!!", error);
-    //   });
-    // }, []);
+
+    const [BuyList, setBuyList] = useState([]);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [numberOfPages, setNumberOfPages] = useState(1);
 
     const tableHeader = [['Số thứ tự', 'Ngày và giờ', 'Loại giấy', 'Số lượng', 'Trạng thái']];
     const [tableData, setTableData] = useState([
       ['1', '28/11/2023 09:11 am', 'A3', '10', 'Hoàn thành'],
       ['2', '28/11/2023 09:11 am', 'A4', '10', 'Đang thực hiện'],
       ['3', '28/11/2023 09:11 am', 'A0', '10', 'Hoàn thành'],
-  ]);
-    const [currentPage, setCurrentPage] = useState(1);
-    const numberOfPages = 5;
+    ]);
 
     const handlePageClick = (pageNumber) => {
-      const newData = generateDataForPage(pageNumber);
-      setTableData(newData);
-      setCurrentPage(pageNumber);
-  };
-  const generateDataForPage = (pageNumber) => {
-    return [
-        [`${(pageNumber-1)*3 + 1}`, '28/11/2023 09:11 am', 'A3', `${pageNumber}`, 'Hoàn thành'],
-        [`${(pageNumber-1)*3 + 2}`, '28/11/2023 09:11 am', 'A4', `${pageNumber}`, 'Đang thực hiện'],
-        [`${(pageNumber-1)*3 + 3}`, '28/11/2023 09:11 am', 'A0', `${pageNumber}`, 'Hoàn thành'],
-    ];
-    // const startIndex = (pageNumber - 1) * 3;
-    // const endIndex = startIndex + 3;
-    
-    // return BuyList.slice(startIndex, endIndex).map((item, index) => [
-    //   `${startIndex + index + 1}`,
-    //   item.documentName,
-    //   item.date,
-    //   item.paperType,
-    //   item.quantity,
-    //   item.status
-    // ]);
-  };
-  useEffect(() => {
-    handlePageClick(1);
-  }, []);
+      axios.post("http://localhost:8080/api/history/admin/printings", {}, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      })
+      .then((response) => {
+        if (response.status === 200 && 'printHistory' in response.data) {
+          const fetchedBuyList = JSON.parse(response.data.printHistory);
+          setBuyList(fetchedBuyList);
+
+          const calculatedNumberOfPages = Math.ceil(fetchedBuyList.length / 3);
+          setNumberOfPages(calculatedNumberOfPages);
+
+          const newData = generateDataForPage(pageNumber);
+          setTableData(newData);
+          setCurrentPage(pageNumber);
+        }
+      })
+      .catch((error) => {
+        console.error("Error!!!!!!", error);
+      });
+    };
+  
+    const generateDataForPage = (pageNumber) => {
+      const startIndex = (pageNumber - 1) * 3;
+      const endIndex = startIndex + 3;
+      return BuyList.slice(startIndex, endIndex).map((item, index) => [
+        `${startIndex + index + 1}`,
+        item.student_id,
+        item.student_name,
+        item.email,
+        item.password,
+        item.state
+      ]);
+    };
+
+    useEffect(() => {
+      handlePageClick(1);
+    }, []);
 
   return (
     <div className="HistoryPrintTemplate grid grid-cols-1">

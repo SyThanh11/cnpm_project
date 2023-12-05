@@ -1,10 +1,10 @@
 
 import { useState, useEffect } from 'react';
-import axios from "axios";
-import Cookies from "universal-cookie";
+// import axios from "axios";
+// import Cookies from "universal-cookie";
 
-const cookies = new Cookies();
-const token = cookies.get("TOKEN");
+// const cookies = new Cookies();
+// const token = cookies.get("TOKEN");
 
 const HistoryPrintData = ({ header, data }) => {
     return (
@@ -90,52 +90,65 @@ const PageNumbers = ({ numPages, onPageClick }) => {
 
 export const HistoryPrintTemplate = () => {
 
-    const [PrintList, setPrintList] = useState([]);
+    // const [PrintList, setPrintList] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
-    const [numberOfPages, setNumberOfPages] = useState(1);
+    // const [numberOfPages, setNumberOfPages] = useState(1);
+    const numberOfPages = 5;
     
     const tableHeader = [['Số thứ tự', 'Tên tài liệu', 'Ngày và giờ', 'Loại giấy', 'Tên máy in', 'Trạng thái']];
     const [tableData, setTableData] = useState([
-      ['1', 'Harry Potter', '28/11/2023 09:11 am', 'A3', '10', 'Hoàn thành'],
-      ['2', 'Harry Potter', '28/11/2023 09:11 am', 'A4', '10', 'Đang thực hiện'],
-      ['3', 'Harry Potter', '28/11/2023 09:11 am', 'A0', '10', 'Hoàn thành'],
+      ['1', 'DSA', '28/11/2023 09:11 am', 'A3', '10', 'Hoàn thành'],
+      ['2', 'DSA', '28/11/2023 09:11 am', 'A4', '10', 'Đang thực hiện'],
+      ['3', 'DSA', '28/11/2023 09:11 am', 'A0', '10', 'Hoàn thành'],
     ]);
 
     const handlePageClick = (pageNumber) => {
-      axios.post("http://localhost:8080/api/history/admin/printings", {}, {
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      })
-      .then((response) => {
-        if (response.status === 200 && 'printHistory' in response.data) {
-          const fetchedPrintList = JSON.parse(response.data.printHistory);
-          setPrintList(fetchedPrintList);
+      // axios.post("http://localhost:8080/api/history/admin/printings", {}, {
+      //   headers: {
+      //     Authorization: `Bearer ${token}`
+      //   }
+      // })
+      // .then((response) => {
+      //   if (response.status === 200 && 'printHistory' in response.data) {
+      //     const fetchedPrintList = JSON.parse(response.data.printHistory);
+      //     setPrintList(fetchedPrintList);
 
-          const calculatedNumberOfPages = Math.ceil(fetchedPrintList.length / 3);
-          setNumberOfPages(calculatedNumberOfPages);
+      //     const calculatedNumberOfPages = Math.ceil(fetchedPrintList.length / 3);
+      //     setNumberOfPages(calculatedNumberOfPages);
 
           const newData = generateDataForPage(pageNumber);
           setTableData(newData);
           setCurrentPage(pageNumber);
-        }
-      })
-      .catch((error) => {
-        console.error("Error!!!!!!", error);
-      });
+        // }
+      // })
+      // .catch((error) => {
+      //   console.error("Error!!!!!!", error);
+      // });
     };
   
     const generateDataForPage = (pageNumber) => {
       const startIndex = (pageNumber - 1) * 3;
-      const endIndex = startIndex + 3;
-      return PrintList.slice(startIndex, endIndex).map((item, index) => [
-        `${startIndex + index + 1}`,
-        item.student_id,
-        item.student_name,
-        item.email,
-        item.password,
-        item.state
-      ]);
+      if (startIndex == 0 || startIndex == 9)
+        return [[`${startIndex + 1}`, 'DSA', '28/11/2023 08:11 am', 'A3', 'Kyocera Ecosys', 'Hoàn thành'],
+                [`${startIndex + 2}`, 'Kiến trúc máy tính', '28/11/2023 09:11 am', 'A4', 'Xerox Phaser 6510', 'Đang thực hiện'],
+                [`${startIndex + 3}`, 'Công nghệ phần mềm', '28/11/2023 10:11 am', 'A4', 'Canon LBP 3300', 'Hoàn thành']]
+      if (startIndex == 3 || startIndex == 12)
+        return [[`${startIndex + 1}`, 'Mạng máy tính', '28/11/2023 11:11 am', 'A3', 'Epson WorkForce Pro', 'Hoàn thành'],
+                [`${startIndex + 2}`, 'Harry Potter', '28/11/2023 13:11 am', 'A4', 'Kyocera Ecosys', 'Hoàn thành'],
+                [`${startIndex + 3}`, 'Hồ sơ', '28/11/2023 14:11 am', 'A3', 'Canon MAXIFY', 'Hoàn thành']]
+      if (startIndex == 6)
+      return [[`${startIndex + 1}`, 'IELTS', '28/11/2023 15:11 am', 'A3', 'Canon MAXIFY', 'Hoàn thành'],
+              [`${startIndex + 2}`, 'CV', '28/11/2023 16:11 am', 'A3', 'HP OfficeJet Pro', 'Hoàn thành'],
+              [`${startIndex + 3}`, 'Kỹ thuật lập trình', '28/11/2023 17:11 am', 'A3', 'Dell Color Laser Printer', 'Hoàn thành']]
+      // const endIndex = startIndex + 3;
+      // return PrintList.slice(startIndex, endIndex).map((item, index) => [
+      //   `${startIndex + index + 1}`,
+      //   item.student_id,
+      //   item.student_name,
+      //   item.email,
+      //   item.password,
+      //   item.state
+      // ]);
     };
 
     useEffect(() => {

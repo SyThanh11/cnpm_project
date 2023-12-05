@@ -1,10 +1,10 @@
 // import { useNavigate } from 'react-router-dom'
 // import { PATH } from 'constant/config';
 import { useState, useEffect } from 'react';
-import axios from "axios";
-import Cookies from "universal-cookie";
-const cookies = new Cookies();
-const token = cookies.get("TOKEN");
+// import axios from "axios";
+// import Cookies from "universal-cookie";
+// const cookies = new Cookies();
+// const token = cookies.get("TOKEN");
 
 const HistoryBuyData = ({ header, data }) => {
     return (
@@ -90,9 +90,10 @@ const PageNumbers = ({ numPages, onPageClick }) => {
 
 export const HistoryBuyTemplate = () => {
 
-    const [BuyList, setBuyList] = useState([]);
+    // const [BuyList, setBuyList] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
-    const [numberOfPages, setNumberOfPages] = useState(1);
+    // const [numberOfPages, setNumberOfPages] = useState(1);
+    const numberOfPages = 5;
 
     const tableHeader = [['Số thứ tự', 'Ngày và giờ', 'Loại giấy', 'Số lượng', 'Trạng thái']];
     const [tableData, setTableData] = useState([
@@ -102,40 +103,52 @@ export const HistoryBuyTemplate = () => {
     ]);
 
     const handlePageClick = (pageNumber) => {
-      axios.post("http://localhost:8080/api/history/admin/printings", {}, {
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      })
-      .then((response) => {
-        if (response.status === 200 && 'printHistory' in response.data) {
-          const fetchedBuyList = JSON.parse(response.data.printHistory);
-          setBuyList(fetchedBuyList);
+      // axios.post("http://localhost:8080/api/history/admin/printings", {}, {
+      //   headers: {
+      //     Authorization: `Bearer ${token}`
+      //   }
+      // })
+      // .then((response) => {
+      //   if (response.status === 200 && 'printHistory' in response.data) {
+      //     const fetchedBuyList = JSON.parse(response.data.printHistory);
+      //     setBuyList(fetchedBuyList);
 
-          const calculatedNumberOfPages = Math.ceil(fetchedBuyList.length / 3);
-          setNumberOfPages(calculatedNumberOfPages);
+      //     const calculatedNumberOfPages = Math.ceil(fetchedBuyList.length / 3);
+      //     setNumberOfPages(calculatedNumberOfPages);
 
           const newData = generateDataForPage(pageNumber);
           setTableData(newData);
           setCurrentPage(pageNumber);
-        }
-      })
-      .catch((error) => {
-        console.error("Error!!!!!!", error);
-      });
+      //   }
+      // })
+      // .catch((error) => {
+      //   console.error("Error!!!!!!", error);
+      // });
     };
   
     const generateDataForPage = (pageNumber) => {
       const startIndex = (pageNumber - 1) * 3;
-      const endIndex = startIndex + 3;
-      return BuyList.slice(startIndex, endIndex).map((item, index) => [
-        `${startIndex + index + 1}`,
-        item.student_id,
-        item.student_name,
-        item.email,
-        item.password,
-        item.state
-      ]);
+      if (startIndex == 0 || startIndex == 9)
+        return [[`${startIndex + 1}`, '28/11/2023 09:11 am', 'A3', '10', 'Hoàn thành'],
+                [`${startIndex + 2}`, '28/11/2023 10:11 am', 'A4', '20', 'Hoàn thành'],
+                [`${startIndex + 3}`, '28/11/2023 11:11 am', 'A4', '5', 'Hoàn thành']]
+      if (startIndex == 3 || startIndex == 12)
+      return [[`${startIndex + 1}`, '28/11/2023 14:11 am', 'A3', '30', 'Hoàn thành'],
+              [`${startIndex + 2}`, '28/11/2023 15:11 am', 'A3', '25', 'Hoàn thành'],
+              [`${startIndex + 3}`, '28/11/2023 16:11 am', 'A3', '15', 'Hoàn thành']]
+      if (startIndex == 6)
+      return [[`${startIndex + 1}`, '28/11/2023 10:11 am', 'A4', '10', 'Hoàn thành'],
+              [`${startIndex + 2}`, '28/11/2023 11:11 am', 'A4', '15', 'Hoàn thành'],
+              [`${startIndex + 3}`, '28/11/2023 15:11 am', 'A3', '20', 'Hoàn thành']]
+      // const endIndex = startIndex + 3;
+      // return BuyList.slice(startIndex, endIndex).map((item, index) => [
+      //   `${startIndex + index + 1}`,
+      //   item.student_id,
+      //   item.student_name,
+      //   item.email,
+      //   item.password,
+      //   item.state
+      // ]);
     };
 
     useEffect(() => {

@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
-import axios from "axios";
-import Cookies from "universal-cookie";
+// import axios from "axios";
+// import Cookies from "universal-cookie";
 
-const cookies = new Cookies();
-const token = cookies.get("TOKEN");
+// const cookies = new Cookies();
+// const token = cookies.get("TOKEN");
 
 const FeedbackData = ({ header, data }) => {
     return (
@@ -88,9 +88,10 @@ const PageNumbers = ({ numPages, onPageClick }) => {
 
 export const AdminConfigTemplate = () => {
 
-    const [FeedbackList, setFeedbackList] = useState([]);
+    // const [FeedbackList, setFeedbackList] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
-    const [numberOfPages, setNumberOfPages] = useState(1);
+    // const [numberOfPages, setNumberOfPages] = useState(1);
+    const numberOfPages = 5;
 
     const tableHeader = [['Số thứ tự', 'MSSV', 'Ngày và giờ', 'Phản hồi', 'Mức độ']];
     const [tableData, setTableData] = useState([
@@ -100,40 +101,52 @@ export const AdminConfigTemplate = () => {
     ]);
 
     const handlePageClick = (pageNumber) => {
-      axios.post("http://localhost:8080/api/history/admin/printings", {}, {
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      })
-      .then((response) => {
-        if (response.status === 200 && 'printHistory' in response.data) {
-          const fetchedFeedbackList = JSON.parse(response.data.printHistory);
-          // const tripledFeedbackList = Array.from({ length: 3 }, () => fetchedFeedbackList).flat();
-          setFeedbackList(fetchedFeedbackList);
+      // axios.post("http://localhost:8080/api/history/admin/printings", {}, {
+      //   headers: {
+      //     Authorization: `Bearer ${token}`
+      //   }
+      // })
+      // .then((response) => {
+      //   if (response.status === 200 && 'printHistory' in response.data) {
+      //     const fetchedFeedbackList = JSON.parse(response.data.printHistory);
+      //     // const tripledFeedbackList = Array.from({ length: 3 }, () => fetchedFeedbackList).flat();
+      //     setFeedbackList(fetchedFeedbackList);
 
-          const calculatedNumberOfPages = Math.ceil(fetchedFeedbackList.length / 3);
-          setNumberOfPages(calculatedNumberOfPages);
+      //     const calculatedNumberOfPages = Math.ceil(fetchedFeedbackList.length / 3);
+      //     setNumberOfPages(calculatedNumberOfPages);
 
           const newData = generateDataForPage(pageNumber);
           setTableData(newData);
           setCurrentPage(pageNumber);
-        }
-      })
-      .catch((error) => {
-        console.error("Error!!!!!!", error);
-      });
+      //   }
+      // })
+      // .catch((error) => {
+      //   console.error("Error!!!!!!", error);
+      // });
     };
   
     const generateDataForPage = (pageNumber) => {
       const startIndex = (pageNumber - 1) * 3;
-      const endIndex = startIndex + 3;
-      return FeedbackList.slice(startIndex, endIndex).map((item, index) => [
-        `${startIndex + index + 1}`,
-        item.student_id,
-        item.student_name,
-        item.email,
-        item.password
-      ]);
+      if (startIndex == 0 || startIndex == 9)
+        return [[`${startIndex + 1}`, '2111111', '05/12/2023 09:11 am', 'Web dùng tạm ổn', '2'],
+                [`${startIndex + 2}`, '2112256', '05/12/2023 10:32 am', 'Web hay', '5'],
+                [`${startIndex + 3}`, '2113456', '05/12/2023 16:37 am', 'Cần điều chỉnh phần in ấn sao cho mượt hơn', '3']]
+      if (startIndex == 3 || startIndex == 12)
+        return [[`${startIndex + 1}`, '2234567', '05/12/2023 07:34 am', 'Dịch vụ rất chậm', '1'],
+                [`${startIndex + 2}`, '2110001', '06/12/2023 08:59 am', '...', '2'],
+                [`${startIndex + 3}`, '2312348', '06/12/2023 09:23 am', 'Web tạm ổn', '3']]
+      if (startIndex == 6)
+        return [[`${startIndex + 1}`, '2011232', '06/12/2023 09:19 am', 'Quá hay', '5'],
+                [`${startIndex + 2}`, '2316648', '06/12/2023 09:47 am', 'Rất mượt', '5'],
+                [`${startIndex + 3}`, '1922222', '06/12/2023 09:36 am', 'Web rất ổn', '5']]
+      // const endIndex = startIndex + 3;
+      // return FeedbackList.slice(startIndex, endIndex).map((item, index) => [
+      //   `${startIndex + index + 1}`,
+      //   item.student_id,
+      //   item.student_name,
+      //   item.email,
+      //   item.password
+      // ]);
     };
 
     useEffect(() => {

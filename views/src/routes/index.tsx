@@ -1,7 +1,7 @@
 import { HistoryLayout, MainLayout, PrintLayout, AdminLayout } from "components";
 import { PATH } from "constant/config";
-import { Home, Login, PrintZero, PrintOne, SignUp, User, About, PrintTwo, HistoryPrint, HistoryBuy } from "pages";
 import { Admin, AdminConfig, AdminViewFeedback, AdminPrinter } from "pages";
+import { Home, Login, PrintZero, PrintOne, SignUp, User, About, PrintTwo, HistoryPrint, HistoryBuy, LoginRoute } from "pages";
 import { RouteObject } from "react-router-dom";
 
 export const router: RouteObject[] = [
@@ -15,6 +15,10 @@ export const router: RouteObject[] = [
             {
                 path: PATH.login,
                 element: <Login />
+            },
+            {
+                path: PATH.loginRoute,
+                element: <LoginRoute />
             },
             {
                 path: PATH.signUp,

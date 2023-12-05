@@ -10,7 +10,7 @@ export const PATH = {
     about: '/about',
     historyPrint: '/user/history/print',
     historyBuy: '/user/history/buy',
-
+    loginRoute: '/loginRoute',
     admin: '/admin',
     adminConfig: '/admin/config',
     adminPrinter: '/admin/printer',

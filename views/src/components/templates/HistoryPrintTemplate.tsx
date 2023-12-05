@@ -99,7 +99,7 @@ export const HistoryPrintTemplate = () => {
       ['1', 'Harry Potter', '28/11/2023 09:11 am', 'A3', '10', 'Hoàn thành'],
       ['2', 'Harry Potter', '28/11/2023 09:11 am', 'A4', '10', 'Đang thực hiện'],
       ['3', 'Harry Potter', '28/11/2023 09:11 am', 'A0', '10', 'Hoàn thành'],
-  ]);
+    ]);
 
     const handlePageClick = (pageNumber) => {
       const newData = generateDataForPage(pageNumber);

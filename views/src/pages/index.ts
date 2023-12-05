@@ -13,4 +13,5 @@ export * from './HistoryBuy'
 
 export * from './Admin'
 export * from './AdminConfig'
+export * from './AdminPrinter'
 export * from './AdminViewFeedback'

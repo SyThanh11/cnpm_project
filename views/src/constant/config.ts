@@ -13,5 +13,6 @@ export const PATH = {
 
     admin: '/admin',
     adminConfig: '/admin/config',
-    adminViewFeedback: '/admin/viewFeedback'
+    adminPrinter: '/admin/printer',
+    adminViewFeedback: '/admin/viewFeedback',
 }

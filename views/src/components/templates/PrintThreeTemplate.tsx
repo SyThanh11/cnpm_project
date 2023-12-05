@@ -38,7 +38,7 @@ export const PrintThreeTemplate = () => {
             await sleep(2000);
             document.getElementById('spinner_loading').hidden = true;
             document.getElementById('spinner_checked').hidden = false;
-            alert("Xác nhận thành toán thành công!");
+            alert("Xác nhận thanh toán thành công!");
         } else {
             document.getElementById('spinner_loading').hidden = true;
             document.getElementById('spinner_checked').hidden = true;

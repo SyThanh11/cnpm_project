@@ -7,7 +7,7 @@ import Cookies from "universal-cookie";
 
 const cookies = new Cookies();
 
-export const LoginTemplate = () => {
+export const LoginTemplate = ({Admin}) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [errorMessage, setErrorMessage] = useState(null);
@@ -23,10 +23,39 @@ export const LoginTemplate = () => {
                 cookies.set("TOKEN", response.data.token, {
                     path: "/",
                 });
+
                 setTimeout(() => {
                     window.location.reload();
                 }, 500);
-                navigate(PATH.user);   
+
+                const token = cookies.get("TOKEN");
+                if (Admin){
+                    axios.post("http://localhost:8080/api/authorization/admin",{},{
+                        headers: {
+                            Authorization: `Bearer ${token}`
+                        }
+                    })
+                    .then((response) => {
+                        console.log(response.data);
+                        navigate(PATH.admin);
+                    })
+                    .catch((error) => {
+                        console.error(error);
+                    });
+                } else {
+                    axios.post("http://localhost:8080/api/authorization/student",{},{
+                        headers: {
+                            Authorization: `Bearer ${token}`
+                        }
+                    })
+                    .then((response) => {
+                        console.log(response.data);
+                        navigate(PATH.user);
+                    })
+                    .catch((error) => {
+                        console.error(error);
+                    });
+                }
             })
             .catch((error) => {
                 if (error.response) {

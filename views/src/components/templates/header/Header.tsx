@@ -5,20 +5,21 @@ import { useEffect, useState } from 'react';
 import Cookies from "universal-cookie";
 import axios from "axios";
 
+const cookies = new Cookies();
+
 export const Header = () => {
   const navigate = useNavigate();
   const [page, setPage] = useState("Home");
   const [authInfo, setAuthInfo] = useState({
     isLogin: false,
-    isAdmin: false,
   });
   const cookies = new Cookies();
   
   useEffect(() => {
     const token = cookies.get('TOKEN');
-    console.log(`cookies: token=${token}`);
+
     if (token === undefined) {
-      setAuthInfo(() => ({ isLogin: false, isAdmin: false }));
+      setAuthInfo(() => ({ isLogin: false}));
     }
 
     else {
@@ -30,25 +31,11 @@ export const Header = () => {
         })
         .then((response) => {
           console.log(response.data);
-          setAuthInfo({ isLogin: true, isAdmin: false});
+          setAuthInfo({ isLogin: true});
         })
         .catch((error) => {
           console.error(error);
-          setAuthInfo({ isLogin: false, isAdmin: false});
-        });
-      
-      axios
-        .post('http://localhost:8080/api/authorization/admin', {}, {
-          headers: {
-            Authorization: `Bearer ${token}`
-          }
-        })
-        .then((response) => {
-          console.log(response.data);
-          setAuthInfo({ isLogin: true, isAdmin: true});
-        })
-        .catch((error) => {
-          console.error(error);
+          setAuthInfo({ isLogin: false});
         });
     }
   }, []);
@@ -61,7 +48,7 @@ export const Header = () => {
     cookies.remove('TOKEN', {
       path: "/",
     });
-    setAuthInfo({ isLogin: false, isAdmin: false});
+    setAuthInfo({ isLogin: false});
     navigate('/');
     console.log('Đã đăng xuất');
     window.location.reload();

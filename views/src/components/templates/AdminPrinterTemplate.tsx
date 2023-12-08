@@ -150,9 +150,13 @@ export const AdminPrinterTemplate = () => {
               <PageNumbers numPages={numberOfPages} onPageClick={handlePageClick} />
               <div className='flex items-center justify-end py-20'>
                 <button className="bg-[#009EE2] text-white border-2 border-[#009EE2] hover:border-[#2e6780] hover:bg-[#2e6780] hover:text-white transition-all font-bold py-6 px-34 rounded">
+                    Thêm máy in {currentPage == 1 ? "tòa A" : currentPage == 2 ? "tòa B" : "tòa C"}
+                </button>
+
+                <button className="ml-20 bg-[#009EE2] text-white border-2 border-[#009EE2] hover:border-[#2e6780] hover:bg-[#2e6780] hover:text-white transition-all font-bold py-6 px-34 rounded">
                     Xác nhận {currentPage == 1 ? "tòa A" : currentPage == 2 ? "tòa B" : "tòa C"}
                 </button>
-            </div>
+              </div>
           </div>
       </div>
     )

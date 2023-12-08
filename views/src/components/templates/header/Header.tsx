@@ -79,11 +79,11 @@ export const Header = () => {
               Login
             </button>
           )}
-          {authInfo.isLogin == true ? null : (
+          {/* {authInfo.isLogin == true ? null : (
             <button onClick={() => { navigate(PATH.signUp) }} className="bg-[#1B1BEF] text-white border-2 border-[#1B1BEF] hover:bg-white hover:text-[#1B1BEF] transition-all font-medium py-4 px-20 rounded">
               Sign up
             </button>
-          )}
+          )} */}
           {authInfo.isLogin == false ? null : (
             <button onClick={handleSignOut} className="bg-[#1B1BEF] text-white border-2 border-[#1B1BEF] hover:bg-white hover:text-[#1B1BEF] transition-all font-medium py-4 px-20 rounded">
               Sign out

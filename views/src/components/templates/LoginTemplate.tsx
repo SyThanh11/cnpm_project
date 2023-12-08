@@ -60,7 +60,6 @@ export const LoginTemplate = ({Admin}) => {
             .catch((error) => {
                 if (error.response) {
                     setErrorMessage(error.response.data.message);
-                    window.alert(errorMessage);
                 }
             });
         // navigate(PATH.user);   
@@ -99,6 +98,12 @@ export const LoginTemplate = ({Admin}) => {
                             LOGIN
                         </button>
                     </div>
+                    <div>
+                    {errorMessage &&
+                        <h5 className="mt-3 mb-0 p-0 text-danger text-center">{errorMessage}</h5>
+                    }
+                    </div>
+                    
                     <div className='flex items-center justify-center my-20'>
                         <p className='w-[150px] h-[1px] bg-black'></p>
                         <p className='mx-10 text-[15px]'>OR</p>
@@ -115,9 +120,9 @@ export const LoginTemplate = ({Admin}) => {
                             <GithubOutlined className='text-20 hover:cursor-pointer'/>
                         </div>
                     </div>
-                    <div className='login-signup flex items-center justify-center mt-10 mb-20'>
+                    {/* <div className='login-signup flex items-center justify-center mt-10 mb-20'>
                         <p className='text-14'>Don't have account? <span onClick={() => { navigate(PATH.signUp) }} className='font-bold hover:cursor-pointer'>Register Now</span></p>
-                    </div>
+                    </div> */}
                 </div>
             </div>
         </div>

@@ -91,13 +91,15 @@ export const AdminConfigTemplate = () => {
     // const [FeedbackList, setFeedbackList] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     // const [numberOfPages, setNumberOfPages] = useState(1);
-    const numberOfPages = 5;
+    const numberOfPages = 3;
 
     const tableHeader = [['Số thứ tự', 'MSSV', 'Ngày và giờ', 'Phản hồi', 'Mức độ']];
     const [tableData, setTableData] = useState([
       ['1', '2111111', '28/11/2023 09:11 am', 'Web dùng tạm ổn', '2'],
       ['2', '2111111', '28/11/2023 09:11 am', 'Web hay', '5'],
       ['3', '2111111', '28/11/2023 09:11 am', 'Cần điều chỉnh phần in ấn sao cho mượt hơn', '3'],
+      ['4', '2111111', '28/11/2023 09:11 am', 'Web hay', '5'],
+      ['5', '2111111', '28/11/2023 09:11 am', 'Web hay', '5'],
     ]);
 
     const handlePageClick = (pageNumber) => {
@@ -126,19 +128,25 @@ export const AdminConfigTemplate = () => {
     };
   
     const generateDataForPage = (pageNumber) => {
-      const startIndex = (pageNumber - 1) * 3;
-      if (startIndex == 0 || startIndex == 9)
-        return [[`${startIndex + 1}`, '2111111', '05/12/2023 09:11 am', 'Web dùng tạm ổn', '2'],
-                [`${startIndex + 2}`, '2112256', '05/12/2023 10:32 am', 'Web hay', '5'],
-                [`${startIndex + 3}`, '2113456', '05/12/2023 16:37 am', 'Cần điều chỉnh phần in ấn sao cho mượt hơn', '3']]
-      if (startIndex == 3 || startIndex == 12)
-        return [[`${startIndex + 1}`, '2234567', '05/12/2023 07:34 am', 'Dịch vụ rất chậm', '1'],
-                [`${startIndex + 2}`, '2110001', '06/12/2023 08:59 am', '...', '2'],
-                [`${startIndex + 3}`, '2312348', '06/12/2023 09:23 am', 'Web tạm ổn', '3']]
-      if (startIndex == 6)
-        return [[`${startIndex + 1}`, '2011232', '06/12/2023 09:19 am', 'Quá hay', '5'],
-                [`${startIndex + 2}`, '2316648', '06/12/2023 09:47 am', 'Rất mượt', '5'],
-                [`${startIndex + 3}`, '1922222', '06/12/2023 09:36 am', 'Web rất ổn', '5']]
+      const startIndex = (pageNumber - 1) * 5;
+      if (startIndex == 0)
+        return [[`${startIndex + 1}`, '2111111', '05/12/2023 09:11', 'Web dùng tạm ổn', '2'],
+                [`${startIndex + 2}`, '2112256', '05/12/2023 10:32', 'Web hay', '5'],
+                [`${startIndex + 3}`, '2113456', '05/12/2023 10:35', 'Cần điều chỉnh phần in ấn sao cho mượt hơn', '3'],
+                [`${startIndex + 4}`, '2312312', '05/12/2023 11:02', 'Rất tiện lợi ạ!', '5'],
+                [`${startIndex + 5}`, '2218593', '05/12/2023 12:23', 'Hayyyy', '5']]
+      if (startIndex == 5)
+        return [[`${startIndex + 1}`, '2234567', '05/12/2023 14:34', 'Dịch vụ rất chậm', '1'],
+                [`${startIndex + 2}`, '2110001', '06/12/2023 08:59', '...', '2'],
+                [`${startIndex + 3}`, '2312348', '06/12/2023 09:23', 'Web tạm ổn', '3'],
+                [`${startIndex + 4}`, '2314895', '06/12/2023 13:32', 'Có những thời điểm in rất chậm', '1'],
+                [`${startIndex + 5}`, '2117285', '06/12/2023 17:39', 'In rất nhanh', '5']]
+      if (startIndex == 10)
+        return [[`${startIndex + 1}`, '2011232', '06/12/2023 19:19', 'Quá hay', '5'],
+                [`${startIndex + 2}`, '2316648', '06/12/2023 07:27', 'Rất mượt', '5'],
+                [`${startIndex + 3}`, '1922222', '07/12/2023 09:36', 'Web rất ổn', '5'],
+                [`${startIndex + 4}`, '2119458', '07/12/2023 09:59', 'Web thường xuyên bị sập', '1'],
+                [`${startIndex + 5}`, '2115734', '07/12/2023 16:47', 'Tạm', '2']]
       // const endIndex = startIndex + 3;
       // return FeedbackList.slice(startIndex, endIndex).map((item, index) => [
       //   `${startIndex + index + 1}`,

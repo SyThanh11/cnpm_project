@@ -86,7 +86,7 @@ const PageNumbers = ({ numPages, onPageClick }) => {
   );
 };
 
-export const AdminConfigTemplate = () => {
+export const AdminViewFeedbackTemplate = () => {
 
     // const [FeedbackList, setFeedbackList] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
@@ -172,4 +172,4 @@ export const AdminConfigTemplate = () => {
     )
 }
 
-export default AdminConfigTemplate
+export default AdminViewFeedbackTemplate

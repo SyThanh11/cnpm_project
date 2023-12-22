@@ -15,4 +15,5 @@ export const PATH = {
     adminConfig: '/admin/config',
     adminPrinter: '/admin/printer',
     adminViewFeedback: '/admin/viewFeedback',
+    adminViewHistory: '/admin/viewHistory',
 }

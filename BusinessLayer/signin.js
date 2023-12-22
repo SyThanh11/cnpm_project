@@ -1,4 +1,5 @@
-var authentication_model = require("../models/authentication")
+var authentication_model = require("../PersistenceLayer/authentication");
+const authorization_model = require('../PersistenceLayer/authorization');
 
 module.exports = {
     signin: function (req, res) {

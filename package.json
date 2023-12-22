@@ -1,7 +1,7 @@
 {
   "scripts": {
     "server": "node app.js",
-    "client": "npm run start --prefix views",
+    "client": "npm run start --prefix PresentationLayer",
     "start": "concurrently \"npm run server\" \"npm run client\"",
     "dev": "concurrently \"nodemon app.js\" \"npm run client\""
   },

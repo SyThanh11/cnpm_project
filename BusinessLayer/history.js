@@ -1,6 +1,6 @@
 const path = require("path");
-const history_model = require("../models/history")
-const authorization_model = require('../models/authorization');
+const history_model = require("../PersistenceLayer/history")
+const authorization_model = require('../PersistenceLayer/authorization');
 
 module.exports = {
     getPrintListSPSO: function (req, res) {

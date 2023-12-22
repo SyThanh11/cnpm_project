@@ -1,6 +1,6 @@
 const express = require('express');
 const history_router = express.Router();
-const history_controller = require('../controllers/history');
+const history_controller = require('../BusinessLayer/history');
 const path = require("path");
 
 // For SPSOs

@@ -1,6 +1,6 @@
 const path = require("path");
-const feedback_model = require("../models/feedback")
-const authorization_model = require('../models/authorization');
+const feedback_model = require("../PersistenceLayer/feedback")
+const authorization_model = require('../PersistenceLayer/authorization');
 
 module.exports = {
     getFeedbackSPSO: function (req, res) {

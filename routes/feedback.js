@@ -1,6 +1,6 @@
 const express = require('express');
 const feedback_router = express.Router();
-const feedback_controller = require('../controllers/feedback');
+const feedback_controller = require('../BusinessLayer/feedback');
 const path = require("path");
 
 // For SPSOs

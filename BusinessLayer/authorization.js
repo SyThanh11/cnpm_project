@@ -1,5 +1,5 @@
 const path = require("path");
-const authorization_model = require('../models/authorization');
+const authorization_model = require('../PersistenceLayer/authorization');
 
 module.exports = {
   student: [authorization_model.loadCurMember, authorization_model.authorizeStudent, function (req, res) {

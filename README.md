@@ -48,8 +48,9 @@ Các thư viện cần thiết cho ReactJS sẽ được cài đặt.
 ## Khởi chạy web
 Sau khi clone project này, mở terminal tại thư mục mà project được clone (nếu đang ở thư mục views thì phải quay ra thư mục cha nha) và gõ:
 ```
-npm start
+npm run dev
 ```
-Trang [localhost:3000](http://127.0.0.1:3000/) sẽ khởi chạy tự động trên trình duyệt mặc định của máy sau vài giây nếu việc thiết lập thành công.
+Sau vài giây nếu việc thiết lập thành công, trên terminal sẽ hiển thị đường link [http://localhost:3000/]
+Bấm vào đường link này để khởi chạy hệ thống trên trình duyệt mặc định của máy.
 
 Lời cuối, chúc tất cả một ngày tốt lành!

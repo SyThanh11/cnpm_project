@@ -50,7 +50,7 @@ Sau khi clone project này, mở terminal tại thư mục mà project được 
 ```
 npm run dev
 ```
-Sau vài giây nếu việc thiết lập thành công, trên terminal sẽ hiển thị đường link [http://localhost:3000/]
+Sau vài giây nếu việc thiết lập thành công, trên terminal sẽ hiển thị đường link http://localhost:3000/.
 Bấm vào đường link này để khởi chạy hệ thống trên trình duyệt mặc định của máy.
 
 Lời cuối, chúc tất cả một ngày tốt lành!
